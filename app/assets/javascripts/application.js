@@ -12,4 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree ./vendor/foundation/libraries
+//= require vendor/foundation/foundation.js
+//= require vendor/foundation/foundation.equalizer.js
 //= require_tree .
+
+$(document).foundation({
+  equalizer : {
+    // Specify if Equalizer should make elements equal height once they become stacked.
+    equalize_on_stack: false,
+    // Allow equalizer to resize hidden elements
+    act_on_hidden_el: false
+  }
+});

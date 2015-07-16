@@ -27,6 +27,7 @@
         <% if can? :manage, Optimadmin::MenuItem %>
           <li><%= link_to 'Site Navigation', menu_items_path %></li>
         <% end %>
+        <%= module_link(model: Category, path: categories_path) %>
       </ul>
 
       <div class="content-category-type">

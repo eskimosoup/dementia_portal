@@ -8,7 +8,6 @@ class BasePresenter
     @view_template = view_template
   end
 
-
   def self.presents(name)
     define_method(name) do
       @object

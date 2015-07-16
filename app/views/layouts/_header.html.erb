@@ -1,0 +1,17 @@
+<header>
+  <div class="row">
+    <div class="small-4 columns">
+      <%= link_to root_path, title: global_site_settings['Name'], class: 'logo' do %>
+        <%= image_tag 'layout/header/logo.png', alt: global_site_settings['Name'] %>
+      <% end %>
+    </div>
+
+    <div class="small-8 columns">
+      <nav>
+        <ul class="header-navigation">
+          <%= nested_menu_items(menu_items: @header_menu.menu_items) %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
