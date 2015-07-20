@@ -1,16 +1,18 @@
 require 'rails_helper'
 
-RSpec.feature "Home Page", type: :feature do
-  scenario "visiting the home page" do
-    before do
-      create(:site_setting_name)
-    end
+RSpec.feature "User visits the home page", type: :feature do
+  before do
+    create(:site_setting_name)
+    @categories = create_list(:category, 4)
+  end
 
-    let(:categories) { create_list(:categories, 4) }
-
-    it "accesses the home page" do
-      visit root_path
-      expect(page).to have_title("Dementia Portal")
-    end
+  scenario "home page content exists" do
+    visit root_path
+    expect(page).to have_title("Dementia Portal")
+    expect(page).to have_css(".home-category", count: 4)
+    expect(page).to have_css("form.search-form")
+    expect(page).to have_field("Keyword", with: "Enter search terms", type: "text")
+    expect(page).to have_field("Keyword", with: "Enter search terms", type: "text")
+    expect(page).to have_button("Search")
   end
 end

@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   #   end
 end
 Optimadmin::Engine.routes.draw do
-  resources :categories, except: [:show] do
+  resources :articles, except: [:show] do
     collection do
       post 'order'
     end
@@ -70,12 +70,56 @@ Optimadmin::Engine.routes.draw do
       post 'update_image_fit'
     end
   end
+  resources :frequently_asked_questions, except: [:show] do
+    collection do
+      post 'order'
+    end
+    member do
+      get 'toggle'
+    end
+  end
+  resources :resources, except: [:show] do
+    collection do
+      post 'order'
+    end
+    member do
+      get 'toggle'
+    end
+  end
+  resources :services, except: [:show] do
+    collection do
+      post 'order'
+    end
+    member do
+      get 'toggle'
+    end
+  end
+  resources :target_groups, except: [:show] do
+    collection do
+      post 'order'
+    end
+    member do
+      get 'toggle'
+    end
+  end
+  resources :organisations, except: [:show] do
+    collection do
+      post 'order'
+    end
+    member do
+      get 'toggle'
+    end
+  end
   resources :categories, except: [:show] do
     collection do
       post 'order'
     end
     member do
       get 'toggle'
+      get 'edit_images'
+      post 'update_image_default'
+      post 'update_image_fill'
+      post 'update_image_fit'
     end
   end
 end

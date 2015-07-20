@@ -1,6 +1,6 @@
 module Optimadmin
   class CategoriesController < Optimadmin::ApplicationController
-    edit_images_for Category, [[:image, { homepage: ['fill', 230, 230] }]]
+    edit_images_for Category, [[:image, { homepage: ['fill', 300, 300] }]]
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index

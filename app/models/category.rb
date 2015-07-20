@@ -3,6 +3,13 @@ class Category < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
 
+  has_many :article_categories, dependent: :destroy
+  has_many :articles, through: :article_categories
+  has_many :resource_categories, dependent: :destroy
+  has_many :resources, through: :resource_categories
+  has_many :frequently_asked_question_categories, dependent: :destroy
+  has_many :frequently_asked_questions, through: :frequently_asked_question_categories
+
   scope :home_page, -> { where(display: true, display_on_home: true) }
 
   validates :title, presence: true
