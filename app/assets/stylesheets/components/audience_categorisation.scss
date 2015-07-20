@@ -1,0 +1,73 @@
+%audience-button {
+  display: inline-block;
+  border-radius: 11px;
+  font-size: em(12px);
+  font-weight: $semibold;
+  margin: em(25px, 12px) em(5px, 12px) em(5px, 12px);
+  padding: em(2px, 12px) em(14px, 12px);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.audience-categorisation {
+  margin-bottom: em(35px);
+
+  .columns div {
+    padding: em(20px) em(40px);
+  }
+
+  .blue {
+    background: $pastel-blue image-url('components/sections/purple-to-yellow.png') top right no-repeat;
+  }
+
+  .yellow {
+    background: $pastel-yellow;
+  }
+
+  .red {
+    background: $pastel-red image-url('components/sections/yellow-to-red.png') top left no-repeat;
+  }
+
+  .first {
+    padding-right: 0;
+  }
+
+  .middle {
+    padding: 0;
+  }
+
+  .last {
+    padding-left: 0;
+  }
+
+  p {
+    color: $white;
+    font-size: em(16px);
+    font-weight: $semibold;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .white-button {
+    @extend %audience-button;
+    background: $white;
+    color: $pastel-red;
+
+    span {
+      color: $pastel-yellow;
+    }
+  }
+
+  .grey-button {
+    @extend %audience-button;
+    background: $dark-grey;
+    color: $white;
+
+    span {
+      color: $pastel-red;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.twitter-title {
+  background: transparent image-url('components/icons/twitter-large.png') top left no-repeat;
+  font-size: em(22px);
+  font-weight: $bold;
+  padding: em(10px, 22px) 0 0 em(80px, 22px);
+  text-transform: uppercase;
+  min-height: 70px;
+
+  span {
+    display: block;
+    margin-left: em(30px, 22px);
+  }
+}
+
+.tweet {
+  border-bottom: 1px solid $light-grey;
+  font-size: em(12px);
+  line-height: 1.25;
+  margin: 0;
+  padding-bottom: em(15px, 12px);
+}

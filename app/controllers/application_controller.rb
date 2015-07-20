@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   def set_menus
     @header_menu = Optimadmin::Menu.new(name: "header")
+    @header_aside_menu = Optimadmin::Menu.new(name: "header_aside")
     @footer_menu = Optimadmin::Menu.new(name: "footer")
   end
 end

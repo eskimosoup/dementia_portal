@@ -1,0 +1,16 @@
+.home-category {
+  padding-bottom: 1.875em;
+
+  .title {
+    background-color: $pastel-orange;
+    color: $white;
+    font-weight: $semibold;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: em(20px);
+  }
+
+  span {
+    color: $dark-grey;
+  }
+}
