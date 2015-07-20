@@ -1,0 +1,6 @@
+<% if @presented_categories.present? %>
+  <div class="row">
+    <%= render partial: 'categories/home_page', collection: @presented_categories, as: :category_presenter %>
+  </div>
+
+<% end %>

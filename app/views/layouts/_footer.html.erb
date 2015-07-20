@@ -1,0 +1,18 @@
+<footer>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="footer-information">
+        <span class="copyright">
+          &copy; <%= global_site_settings['Name'] %> <%= Date.today.year %>
+        </span>
+        <nav class="footer-navigation">
+          <ul>
+            <%= nested_menu_items(menu_items: @footer_menu.menu_items) %>
+          </ul>
+        </nav>
+        <span class="site-authorship">
+          Site by <%= link_to 'Optimised', 'http://optimised.today' %>
+        </span>
+      </div>
+  </div>
+</footer>
