@@ -32,8 +32,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
-gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
+#  gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
+# gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
+gem 'optimadmin_generators', git: 'git@github-pauleskimosoup:eskimosoup/optimadmin_generators.git', group: :development
+gem 'optimadmin', git: 'git@github-pauleskimosoup:eskimosoup/Optimadmin.git'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.9'
 

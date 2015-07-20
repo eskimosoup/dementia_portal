@@ -1,15 +1,33 @@
 <header>
   <div class="row">
-    <div class="small-4 columns">
-      <%= link_to root_path, title: global_site_settings['Name'], class: 'logo' do %>
-        <%= image_tag 'layout/header/logo.png', alt: global_site_settings['Name'] %>
-      <% end %>
+    <div class="large-9 columns">
+      <div class="row">
+        <div class="small-12 columns">
+          <%= link_to root_path, title: global_site_settings['Name'], class: 'logo' do %>
+            <%= image_tag 'layout/header/logo.png', alt: global_site_settings['Name'] %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <nav>
+            <ul class="header-navigation">
+              <%= nested_menu_items(menu_items: @header_menu.menu_items) %>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
 
-    <div class="small-8 columns">
+    <div class="large-3 columns text-right">
+      <div class="telephone">
+        <%= global_site_settings['Telephone'] %>
+      </div>
+
       <nav>
-        <ul class="header-navigation">
-          <%= nested_menu_items(menu_items: @header_menu.menu_items) %>
+        <ul class="header-aside-navigation">
+          <%= nested_menu_items(menu_items: @header_aside_menu.menu_items) %>
         </ul>
       </nav>
     </div>

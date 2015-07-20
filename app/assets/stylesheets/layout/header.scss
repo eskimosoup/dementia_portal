@@ -1,0 +1,12 @@
+header {
+  margin: em(30px) 0 em(11px);
+
+  .telephone {
+    background: transparent image-url('components/icons/phone-icon.png') center right no-repeat;
+    color: $dark-grey;
+    display: inline-block;
+    font-size: em(15px);
+    letter-spacing: 1px;
+    padding-right: em(14px, 15px);
+  }
+}

@@ -2,7 +2,7 @@ class CategoryPresenter < BasePresenter
   presents :category
 
   def title
-    category.title
+    h.raw "#{category.title} <span>></span>"
   end
 
   def homepage_image

@@ -1,6 +1,54 @@
+<div class="row">
+  <div class="small-12 columns">
+    <div class="search-container">
+      <div class="row">
+        <div class="small-12 large-8 large-centered columns">
+          <p>
+            Find support and advice for people affected by dementia in the Hull &amp; Humber area.
+          </p>
+
+          <%= form_tag '', method: :get, class: 'search-form' do %>
+            <%= text_field_tag :keyword, params[:keyword], placeholder: 'Enter search terms', class: 'search-input' %>
+            <%= submit_tag "Search", class: 'search-button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row audience-categorisation" data-equalizer="audience-categorisation">
+  <div class="large-4 small-12 first columns">
+    <div class="blue text-center">
+      <p data-equalizer-watch="audience-categorisation">I am worried about dementia</p>
+
+      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
+      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
+    </div>
+  </div>
+
+  <div class="large-4 small-12 middle columns">
+    <div class="yellow text-center">
+      <p data-equalizer-watch="audience-categorisation">I have been diagnosed with dementia</p>
+
+      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
+      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
+    </div>
+  </div>
+
+  <div class="large-4 small-12 last columns">
+    <div class="red text-center">
+      <p data-equalizer-watch="audience-categorisation">I am a carer or have a family member with dementia</p>
+
+      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
+      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
+    </div>
+  </div>
+</div>
+
+
 <% if @presented_categories.present? %>
   <div class="row">
     <%= render partial: 'categories/home_page', collection: @presented_categories, as: :category_presenter %>
   </div>
-
 <% end %>

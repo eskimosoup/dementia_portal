@@ -1,6 +1,6 @@
 GIT
-  remote: git@github.com:eskimosoup/Optimadmin.git
-  revision: 5264ed6697d840b64873f713f0d46bd295465e0f
+  remote: git@github-pauleskimosoup:eskimosoup/Optimadmin.git
+  revision: a27284e26ac47e7a68ad48087f2226038e8766e6
   specs:
     optimadmin (0.0.1)
       bcrypt
@@ -16,7 +16,7 @@ GIT
       sass-rails
 
 GIT
-  remote: git@github.com:eskimosoup/optimadmin_generators.git
+  remote: git@github-pauleskimosoup:eskimosoup/optimadmin_generators.git
   revision: 6c38370c4bd101617943252125620a696bfd4281
   specs:
     optimadmin_generators (0.3.4)
