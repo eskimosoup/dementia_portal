@@ -32,3 +32,12 @@
     padding: em(8px) em(12px);
   }
 }
+
+input[type='submit'] {
+  background: $dark-grey;
+  border: 2px solid $dark-grey;
+  border-radius: 6px;
+  color: $white;
+  outline: 0;
+  padding: em(8px) em(12px);
+}

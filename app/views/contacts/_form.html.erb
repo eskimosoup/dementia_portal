@@ -1,0 +1,34 @@
+<%= form_for @contact do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize @contact.errors.count, 'error' %> prevented this message from being sent
+      </h2>
+
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: 'Email' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :query %>
+    <%= f.text_area :query, placeholder: 'Query' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Submit', class: 'submit-button' %>
+  </div>
+
+<% end %>
