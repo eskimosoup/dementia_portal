@@ -75,5 +75,9 @@ a {
     color: $light-grey;
     font-size: em(13px);
     font-weight: $semibold;
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
