@@ -6,7 +6,7 @@ RSpec.describe CategoryPresenter, type: :presenter do
 
   it "should return the title" do
     presenter = CategoryPresenter.new(object: category, view_template: view)
-    expect(presenter.title).to eq(category.title)
+    expect(presenter.title).to eq("#{category.title} <span>></span>")
   end
 
   context "images" do

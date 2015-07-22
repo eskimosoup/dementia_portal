@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'articles/index'
-
-  get 'articles/show'
-
   resources :frequently_asked_questions, only: :index, path: 'frequently-asked-questions'
   resources :pages, only: :show
   resources :articles, only: [:index, :show]

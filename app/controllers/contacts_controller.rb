@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.valid?
-      ContactMailer.new(global_site_settings, @contact).deliver
+      ContactMailer.new(global_site_settings, @contact).deliver_now
       redirect_to new_contact_path, notice: 'Message sent'
     else
       render :new
