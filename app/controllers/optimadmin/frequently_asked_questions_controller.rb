@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_frequently_asked_question, only: [:show, :edit, :update, :destroy]
 
     def index
-      @frequently_asked_questions = Optimadmin::BaseCollectionPresenter.new(collection: FrequentlyAskedQuestion.where('title LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::FrequentlyAskedQuestionPresenter)
+      @frequently_asked_questions = Optimadmin::BaseCollectionPresenter.new(collection: FrequentlyAskedQuestion.where('question LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::FrequentlyAskedQuestionPresenter)
     end
 
     def show

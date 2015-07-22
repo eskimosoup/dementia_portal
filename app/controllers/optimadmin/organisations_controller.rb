@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_organisation, only: [:show, :edit, :update, :destroy]
 
     def index
-      @organisations = Optimadmin::BaseCollectionPresenter.new(collection: Organisation.where('title LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::OrganisationPresenter)
+      @organisations = Optimadmin::BaseCollectionPresenter.new(collection: Organisation.where('name LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::OrganisationPresenter)
     end
 
     def show
