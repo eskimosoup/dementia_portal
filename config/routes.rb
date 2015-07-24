@@ -3,19 +3,12 @@ Rails.application.routes.draw do
   resources :pages, only: :show
   resources :articles, only: [:index, :show]
   resources :contacts, only: [:new, :create]
+  resources :resources, only: [:index, :show]
 
   mount Optimadmin::Engine => "/admin"
   root to: "application#index"
 end
 Optimadmin::Engine.routes.draw do
-  get 'articles/index'
-
-  get 'articles/show'
-
-  get 'contacts/new'
-
-  get 'contacts/create'
-
   resources :pages, except: [:show] do
     collection do
       post 'order'

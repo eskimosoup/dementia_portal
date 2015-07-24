@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="small-4 columns">
+    <%= form_for :search, method: :get, html: { class: 'resources-search-form' } do |f| %>
+      <%= f.text_field :keyword, placeholder: 'Enter search terms', class: 'search-input' %>
+
+      <%= f.collection_check_boxes(:category_ids, Category.display.order(title: :asc), :id, :title) do |b| %>
+        <%= b.label(class: "category-label") %>
+        <%= b.check_box(class: "category-check-box") %>
+      <% end %>
+      <%= submit_tag "Search", class: 'search-button' %>
+    <% end %>
+  </div>
+</div>

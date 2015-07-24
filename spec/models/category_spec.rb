@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  describe "validations" do
+  describe "validations", :validation do
     it { should validate_presence_of(:title) }
   end
 
-  describe "associations" do
+  describe "associations", :association do
     it { should have_many(:article_categories).dependent(:destroy) }
     it { should have_many(:articles).through(:article_categories) }
     it { should have_many(:resource_categories).dependent(:destroy) }

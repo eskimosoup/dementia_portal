@@ -11,6 +11,7 @@ class Category < ActiveRecord::Base
   has_many :frequently_asked_questions, through: :frequently_asked_question_categories
 
   scope :home_page, -> { where(display: true, display_on_home: true) }
+  scope :display, -> { where(display: true) }
 
   validates :title, presence: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }
