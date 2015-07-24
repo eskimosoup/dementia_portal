@@ -35,10 +35,15 @@ gem 'bcrypt', '~> 3.1.7'
 #  gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
 # gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'optimadmin_generators', git: 'git@github-pauleskimosoup:eskimosoup/optimadmin_generators.git', group: :development
-gem 'optimadmin', git: 'git@github-pauleskimosoup:eskimosoup/Optimadmin.git'
+gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
+gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.9'
+gem 'pg_search', '~> 1.0.4'
+
+group :development do
+  gem 'guard-rspec', require: false
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,11 +56,11 @@ group :development, :test do
   #gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
+  gem "factory_girl_rails"
   gem 'shoulda-matchers'
 end
 
 group :test do
-  gem "factory_girl_rails"
+  gem 'database_cleaner', '~> 1.4.1'
   gem "capybara"
-  gem "guard-rspec"
 end
