@@ -19,6 +19,10 @@ RSpec.describe Resource, type: :model do
     it { should have_many(:services).through(:resource_services) }
   end
 
+  describe "delegations", :delegation do
+    it { should delegate_method(:name).to(:organisation).with_prefix }
+  end
+
   describe "should generate new friendly id" do
 
     subject(:resource) { create(:resource)}

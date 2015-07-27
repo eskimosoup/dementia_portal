@@ -1,5 +1,6 @@
 class Organisation < ActiveRecord::Base
   ORGANISATION_TYPES = ["Charity", "Hull City Council", "Private Company" ]
+  scope :name_search, ->(search){ where('name LIKE ?', "%#{search}%") if search }
 
   has_many :resources, dependent: :nullify
 
