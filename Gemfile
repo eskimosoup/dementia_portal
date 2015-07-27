@@ -42,6 +42,7 @@ gem 'geocoder', '~> 1.2.9'
 gem 'pg_search', '~> 1.0.4'
 
 group :development do
+  gem "quiet_assets"
   gem 'guard-rspec', require: false
 end
 

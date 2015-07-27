@@ -1,13 +1,67 @@
 <div class="row">
-  <div class="small-4 columns">
-    <%= form_for :search, method: :get, html: { class: 'resources-search-form' } do |f| %>
-      <%= f.text_field :keyword, placeholder: 'Enter search terms', class: 'search-input' %>
+  <div class="small-12 columns">
+    <%= form_for @resource_search, method: :get, url: resources_path, html: { class: 'resources-search-form' } do |f| %>
+      <div class="field">
+        <%= f.label :keywords %><br/>
+        <%= f.text_field :keywords, placeholder: 'Enter search terms', class: 'search-input' %>
+      </div>
 
-      <%= f.collection_check_boxes(:category_ids, Category.display.order(title: :asc), :id, :title) do |b| %>
-        <%= b.label(class: "category-label") %>
-        <%= b.check_box(class: "category-check-box") %>
+      <%= field_set_tag "Categories" do %>
+        <div class="row field">
+          <%= f.collection_check_boxes(:category_ids, Category.displayed.order(title: :asc), :id, :title) do |b| %>
+            <div class="small-6 medium-4 large-3 columns">
+              <%= b.check_box(class: "category check-box") %>
+              <%= b.label(class: "category label") %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
+
+
+        <%= field_set_tag "Target groups" do %>
+          <div class="row field">
+            <%= f.collection_check_boxes(:target_group_ids, TargetGroup.displayed.order(name: :asc), :id, :name) do |b| %>
+              <div class="small-6 columns">
+                <%= b.check_box(class: "target-group check-box") %>
+                <%= b.label(class: "target-group label") %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= field_set_tag "Type of service" do %>
+          <div class="row field">
+            <%= f.collection_check_boxes(:service_ids, Service.displayed.order(name: :asc), :id, :name) do |b| %>
+              <div class="small-6 medium-4 columns">
+                <%= b.check_box(class: "service check-box") %>
+                <%= b.label(class: "service label") %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
       <%= submit_tag "Search", class: 'search-button' %>
     <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-9 columns">
+    <% unless @presented_resources.blank? %>
+      <%= render partial: 'resource', collection: @presented_resources, as: :resource_presenter %>
+    <% else %>
+      <p>
+        No resources found
+      </p>
+    <% end %>
+  </div>
+  <div class="small-3 columns">
+    <div>
+      Related Resources Go Here
+    </div>
+
+    <div>
+      FAQs Go here
+    </div>
   </div>
 </div>

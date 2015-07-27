@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
     def index
-      @resources = Optimadmin::BaseCollectionPresenter.new(collection: Resource.where('name LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::ResourcePresenter)
+      @resources = Optimadmin::BaseCollectionPresenter.new(collection: Resource.name_search(params[:search]).page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::ResourcePresenter)
     end
 
     def show
