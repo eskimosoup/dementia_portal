@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   def index
     @presented_categories = BaseCollectionPresenter.new(collection: Category.home_page, view_template: view_context, presenter: CategoryPresenter)
+    @resource_search = ResourceSearch.new
   end
 
   private

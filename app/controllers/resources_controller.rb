@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   def index
-    @resource_search = ResourceSearch.new(params[:resource_search])
+    @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}))
     @presented_resources = BaseCollectionPresenter.new(collection: @resource_search.resources, view_template: view_context, presenter: ResourcePresenter)
   end
 

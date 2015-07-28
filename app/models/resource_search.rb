@@ -1,31 +1,32 @@
 class ResourceSearch
 
   include ActiveModel::Model
-  attr_accessor :keywords
-  attr_writer :category_ids, :target_group_ids, :service_ids
+  attr_accessor :keywords, :category_ids, :target_group_ids, :service_ids
 
-  def category_ids
-    return nil if @category_ids.reject(&:blank?).empty?
-    @category_ids.map(&:to_i)
-  end
-
-  def target_group_ids
-    return nil if @target_group_ids.reject(&:blank?).empty?
-    @target_group_ids.map(&:to_i)
-  end
-
-  def service_ids
-    return nil if @service_ids.reject(&:blank?).empty?
-    @service_ids.map(&:to_i)
-  end
-
-  def keywords
-    return nil if @keywords.blank?
+  def initialize(params = {})
+    @keywords = fetch_keywords(params)
+    @category_ids = fetch_checkbox_ids(params: params, key: :category_ids)
+    @target_group_ids = fetch_checkbox_ids(params: params, key: :target_group_ids)
+    @service_ids = fetch_checkbox_ids(params: params, key: :service_ids)
   end
 
   def resources
-    # .to_a.uniq because doing .uniq causes sql error
-    Resource.displayed.categories(category_ids).services(service_ids).target_groups(target_group_ids).keyword_search(keywords).to_a.uniq
+    # https://github.com/Casecommons/pg_search/issues/238 the select allows uniq to work
+    Resource.displayed.categories(category_ids).services(service_ids).target_groups(target_group_ids).keyword_search(keywords).uniq
+  end
+
+  private
+
+  def fetch_keywords(params)
+    value = params.fetch(:keywords, nil)
+    return nil if value.blank?
+    value
+  end
+
+  def fetch_checkbox_ids(params:, key:)
+    value = params.fetch(key, nil)
+    return nil if value.nil? || value.reject(&:blank?).empty?
+    value.reject(&:blank?).map(&:to_i)
   end
 
 

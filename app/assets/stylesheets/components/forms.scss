@@ -41,3 +41,11 @@ input[type='submit'] {
   outline: 0;
   padding: em(8px) em(12px);
 }
+
+// Resources form
+form.resources-search-form {
+  margin: 10px auto;
+  .search-button-container {
+    overflow: hidden;
+  }
+}

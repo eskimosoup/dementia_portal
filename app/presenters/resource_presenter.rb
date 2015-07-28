@@ -1,6 +1,8 @@
 class ResourcePresenter < BasePresenter
   presents :resource
 
+  delegate :to_model, to: :resource
+
   def name
     resource.name
   end
