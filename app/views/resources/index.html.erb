@@ -41,8 +41,13 @@
         <% end %>
       </div>
 
-      <%= submit_tag "Search", class: 'search-button' %>
+      <div class="search-button-container">
+        <%= f.submit "Search", class: 'search-button right' %>
+      </div>
+
+      <div class="clear"></div>
     <% end %>
+
   </div>
 </div>
 <div class="row">
@@ -62,6 +67,10 @@
 
     <div>
       FAQs Go here
+    </div>
+
+    <div>
+      Related articles go here
     </div>
   </div>
 </div>

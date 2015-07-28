@@ -7,9 +7,9 @@
             Find support and advice for people affected by dementia in the Hull &amp; Humber area.
           </p>
 
-          <%= form_tag '', method: :get, class: 'search-form' do %>
-            <%= text_field_tag :keyword, params[:keyword], placeholder: 'Enter search terms', class: 'search-input' %>
-            <%= submit_tag "Search", class: 'search-button' %>
+          <%= form_for @resource_search, method: :get, url: resources_path, class: 'search-form' do |f| %>
+            <%= f.text_field :keywords, placeholder: 'Enter search terms', class: 'search-input' %>
+            <%= f.submit "Search", class: 'search-button' %>
           <% end %>
         </div>
       </div>

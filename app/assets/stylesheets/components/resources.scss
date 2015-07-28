@@ -1,0 +1,28 @@
+a.resource {
+  display:block;
+  border-width: 3px;
+  border-style: solid;
+  margin: 10px auto;
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+  padding: 7px;
+  border-radius: 4px;
+  &.yellow {
+    border-color: $pastel-yellow;
+  }
+  &.orange {
+    border-color: $pastel-orange;
+  }
+  &.red {
+    border-color: $pastel-red;
+  }
+  &.blue {
+    border-color: $pastel-blue;
+  }
+  &:hover {
+    border-color: $dark-grey;
+    color: $dark-grey;
+  }
+}
