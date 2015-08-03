@@ -11,16 +11,19 @@ class Resource < ActiveRecord::Base
   pg_search_scope :search, against: { name: "A", description: "B", summary: "C" }, using: { tsearch: { dictionary: "english" } }
 
   scope :name_search, ->(search){ where('name LIKE ?', "%#{search}%") if search }
-  scope :keyword_search, ->(keywords){ search(keywords).select("pg_search_resources.rank, resources.*") if keywords }
-  scope :categories, ->(category_ids) { joins(:resource_categories).where(resource_categories: { category_id: category_ids }) if category_ids }
-  scope :target_groups, ->(target_group_ids) { joins(:resource_target_groups).where(resource_target_groups: { target_group_id: target_group_ids }) if target_group_ids }
-  scope :services, ->(service_ids) { joins(:resource_services).where(resource_services: { service_id: service_ids }) if service_ids }
+  scope :keyword_search, ->(keywords){ search(keywords).select("pg_search_resources.rank, resources.*") if keywords.present? }
+  scope :categories, ->(category_ids) { joins(:categories).where(id: category_ids).merge(Category.displayed) if category_ids.present? }
+  scope :target_groups, ->(target_group_ids) { joins(:target_groups).where(id: target_group_ids).merge(TargetGroup.displayed) if target_group_ids.present? }
+  scope :services, ->(service_ids) { joins(:services).where(id: service_ids).merge(Service.displayed) if service_ids.present? }
   scope :displayed, ->{ where(display: true) }
+  scope :location_search, ->(postcode, radius) { near(postcode, radius) if postcode.present? }
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
 
   delegate :name, to: :organisation, prefix: true
+  geocoded_by :postcode
+  after_validation :geocode, if: ->(obj){ obj.postcode.present? && obj.postcode_changed? }
 
   validates :name, presence: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }

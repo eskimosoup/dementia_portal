@@ -40,6 +40,7 @@ gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.9'
 gem 'pg_search', '~> 1.0.4'
+gem 'virtus', '~> 1.0.5'
 
 group :development do
   gem "quiet_assets"

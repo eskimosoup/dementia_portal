@@ -119,6 +119,13 @@ RSpec.describe Resource, type: :model do
       end
     end
 
+    context "geocoder" do
+      subject(:resource) { create(:resource) }
+      it "should return the resource when searched using geocoder" do
+        expect(Resource.near("HU1 1NQ", 20)).to include(resource)
+      end
+    end
+
   end
 
 end

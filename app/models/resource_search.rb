@@ -1,33 +1,25 @@
 class ResourceSearch
 
-  include ActiveModel::Model
-  attr_accessor :keywords, :category_ids, :target_group_ids, :service_ids
+  RADIUS_OPTIONS = [
+    ["2 miles", 2],
+    ["5 miles", 5],
+    ["10 miles", 10],
+    ["20 miles", 20]
+  ]
 
-  def initialize(params = {})
-    @keywords = fetch_keywords(params)
-    @category_ids = fetch_checkbox_ids(params: params, key: :category_ids)
-    @target_group_ids = fetch_checkbox_ids(params: params, key: :target_group_ids)
-    @service_ids = fetch_checkbox_ids(params: params, key: :service_ids)
-  end
+  include ActiveModel::Model
+  include Virtus.model
+  attribute :keywords, String
+  attribute :postcode, String
+  attribute :radius, Integer
+  attribute :category_ids, Array[Integer]
+  attribute :target_group_ids, Array[Integer]
+  attribute :service_ids, Array[Integer]
 
   def resources
     # https://github.com/Casecommons/pg_search/issues/238 the select allows uniq to work
-    Resource.displayed.categories(category_ids).services(service_ids).target_groups(target_group_ids).keyword_search(keywords).uniq
+    Resource.displayed.categories(category_ids.reject(&:blank?)).services(service_ids.reject(&:blank?))
+        .target_groups(target_group_ids.reject(&:blank?)).keyword_search(keywords).location_search(postcode, radius).uniq
   end
-
-  private
-
-  def fetch_keywords(params)
-    value = params.fetch(:keywords, nil)
-    return nil if value.blank?
-    value
-  end
-
-  def fetch_checkbox_ids(params:, key:)
-    value = params.fetch(key, nil)
-    return nil if value.nil? || value.reject(&:blank?).empty?
-    value.reject(&:blank?).map(&:to_i)
-  end
-
 
 end
