@@ -4,5 +4,6 @@ FactoryGirl.define do
     summary "resource summary"
     description "resource description"
     url "www.google.co.uk"
+    postcode "HU1 1NQ"
   end
 end

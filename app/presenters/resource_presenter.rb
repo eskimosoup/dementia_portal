@@ -7,6 +7,13 @@ class ResourcePresenter < BasePresenter
     resource.name
   end
 
+  def distance
+    return nil if !resource.respond_to?(:distance)
+    h.content_tag :div, class: "distance right" do
+      "#{ h.number_with_precision(resource.distance, precision: 2) } miles"
+    end
+  end
+
   def linked_name
     h.link_to name, resource
   end

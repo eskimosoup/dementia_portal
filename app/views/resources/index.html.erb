@@ -18,28 +18,39 @@
       <% end %>
 
 
-        <%= field_set_tag "Target groups" do %>
-          <div class="row field">
-            <%= f.collection_check_boxes(:target_group_ids, TargetGroup.displayed.order(name: :asc), :id, :name) do |b| %>
-              <div class="small-6 columns">
-                <%= b.check_box(class: "target-group check-box") %>
-                <%= b.label(class: "target-group label") %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+      <%= field_set_tag "Target groups" do %>
+        <div class="row field">
+          <%= f.collection_check_boxes(:target_group_ids, TargetGroup.displayed.order(name: :asc), :id, :name) do |b| %>
+            <div class="small-6 columns">
+              <%= b.check_box(class: "target-group check-box") %>
+              <%= b.label(class: "target-group label") %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
 
-        <%= field_set_tag "Type of service" do %>
-          <div class="row field">
-            <%= f.collection_check_boxes(:service_ids, Service.displayed.order(name: :asc), :id, :name) do |b| %>
-              <div class="small-6 medium-4 columns">
-                <%= b.check_box(class: "service check-box") %>
-                <%= b.label(class: "service label") %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+      <%= field_set_tag "Type of service" do %>
+        <div class="row field">
+          <%= f.collection_check_boxes(:service_ids, Service.displayed.order(name: :asc), :id, :name) do |b| %>
+            <div class="small-6 medium-4 columns">
+              <%= b.check_box(class: "service check-box") %>
+              <%= b.label(class: "service label") %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="small-6 columns field">
+          <%= f.label :postcode %><br/>
+          <%= f.text_field :postcode %>
+        </div>
+        <div class="small-6 columns field">
+          <%= f.label :radius %>
+          <%= f.select :radius, ResourceSearch::RADIUS_OPTIONS %>
+        </div>
       </div>
+
 
       <div class="search-button-container">
         <%= f.submit "Search", class: 'search-button right' %>
