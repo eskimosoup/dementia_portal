@@ -1,0 +1,10 @@
+<div>
+  <h3><%= title %></h3>
+  <ul>
+    <% presented_resources.each do |resource_presenter| %>
+      <li>
+        <%= resource_presenter.linked_name %>
+      </li>
+    <% end %>
+  </ul>
+</div>

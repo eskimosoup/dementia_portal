@@ -11,4 +11,18 @@ RSpec.describe Service, type: :model do
     it { should have_many(:resources).through(:resource_services) }
   end
 
+  describe "scopes" do
+    context "displayed scope" do
+      it "should not find a service that is not displayed" do
+        service = create(:service, display: false)
+        expect(Service.displayed).not_to include(service)
+      end
+
+      it "should not find a service that isdisplayed" do
+        service = create(:service)
+        expect(Service.displayed).to include(service)
+      end
+    end
+  end
+
 end

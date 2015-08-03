@@ -72,16 +72,7 @@
     <% end %>
   </div>
   <div class="small-3 columns">
-    <div>
-      Related Resources Go Here
-    </div>
-
-    <div>
-      FAQs Go here
-    </div>
-
-    <div>
-      Related articles go here
-    </div>
+    <%= render partial: "associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
+    <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
   </div>
 </div>

@@ -15,6 +15,20 @@ RSpec.describe TargetGroup, type: :model do
     it { should have_many(:resources).through(:resource_target_groups) }
   end
 
+  describe "scopes" do
+    context "displayed scope" do
+      it "should not find a target group that is not displayed" do
+        target_group = create(:target_group, display: false)
+        expect(TargetGroup.displayed).not_to include(target_group)
+      end
+
+      it "should not find a target group that isdisplayed" do
+        target_group = create(:target_group)
+        expect(TargetGroup.displayed).to include(target_group)
+      end
+    end
+  end
+
   describe "should generate new friendly id" do
 
     subject(:target_group) { create(:target_group) }

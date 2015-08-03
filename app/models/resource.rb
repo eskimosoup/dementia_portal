@@ -17,6 +17,8 @@ class Resource < ActiveRecord::Base
   scope :services, ->(service_ids) { joins(:services).where(services: { id: service_ids }).merge(Service.displayed) if service_ids.present? }
   scope :displayed, ->{ where(display: true) }
   scope :location_search, ->(postcode, radius) { near(postcode, radius) if postcode.present? }
+  scope :id_not, ->(ids) { where.not(id: ids) if ids.present? }
+  scope :organisation, ->(organisation_id) { where(organisation_id: organisation_id) }
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]

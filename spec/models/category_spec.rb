@@ -14,6 +14,20 @@ RSpec.describe Category, type: :model do
     it { should have_many(:frequently_asked_questions).through(:frequently_asked_question_categories) }
   end
 
+  describe "scopes" do
+    context "displayed scope" do
+      it "should not find a category that is not displayed" do
+        category = create(:category, display: false)
+        expect(Category.displayed).not_to include(category)
+      end
+
+      it "should not find a category that isdisplayed" do
+        category = create(:category)
+        expect(Category.displayed).to include(category)
+      end
+    end
+  end
+
   describe "should generate new friendly id" do
 
     subject(:category) { create(:category)}

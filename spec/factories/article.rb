@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:title) {|n| "my-nice-title-#{n}" }
     sequence(:suggested_url) {|n| "my-url-#{n}" }
     content "My content"
+    date { Date.today }
 
     trait :displayed do
       display true

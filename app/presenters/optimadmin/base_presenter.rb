@@ -19,6 +19,10 @@ module Optimadmin
     end
 
     def edit_image(image)
+      h.it_edit_images(image).call(@object)
+    end
+
+    def edit_image(image)
       h.it_edit_images(image).call(object)
     end
 

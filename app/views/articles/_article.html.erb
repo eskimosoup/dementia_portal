@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="small-12 columns">
+    <%= link_to article_presenter, class: "#{cycle("orange", "yellow", "red", "blue")} article clearfix" do %>
+      <h2><%= article_presenter.title %></h2>
+      <%= article_presenter.index_image %>
+      <%= article_presenter.summary %>
+    <% end %>
+  </div>
+</div>

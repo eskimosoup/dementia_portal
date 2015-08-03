@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require vendor/jquery-ui.js
 //= require_tree ./vendor/foundation/libraries
 //= require vendor/foundation/foundation.js
 //= require vendor/foundation/foundation.equalizer.js
@@ -24,4 +25,10 @@ $(document).foundation({
     // Allow equalizer to resize hidden elements
     act_on_hidden_el: false
   }
+});
+
+$(document).ready(function () {
+  $("#faq-accordion").accordion({
+    collapsible: true
+  });
 });

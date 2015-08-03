@@ -1,2 +1,8 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @presented_article.title %></h1>
+
+    <%= @presented_article.show_image %>
+    <%= @presented_article.content %>
+  </div>
+</div>
