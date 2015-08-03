@@ -52,8 +52,7 @@ RSpec.describe Resource, type: :model do
       subject(:resource) { create(:resource, categories: categories.take(2)) }
 
       it "should find a resource assigned to a category" do
-        first_category_id = categories.first.id
-        expect(Resource.categories(first_category_id)).to eq([resource])
+        expect(Resource.categories(first_category_id)).to include(resource)
       end
 
       it "should not find resources not assigned to category" do
@@ -63,11 +62,11 @@ RSpec.describe Resource, type: :model do
 
       it "should be returned when passed a category it belongs to and one it does not" do
         category_ids = [categories.first.id, categories.last.id]
-        expect(Resource.categories(category_ids)).to eq([resource])
+        expect(Resource.categories(category_ids)).to include(resource)
       end
 
       it "should ignore the scope if passed nil" do
-        expect(Resource.categories(nil)).to eq([resource])
+        expect(Resource.categories(nil)).to include(resource)
       end
     end
 
@@ -77,7 +76,7 @@ RSpec.describe Resource, type: :model do
 
       it "should find a resource assigned to a target_group" do
         first_target_group_id = target_groups.first.id
-        expect(Resource.target_groups(first_target_group_id)).to eq([resource])
+        expect(Resource.target_groups(first_target_group_id)).to include(resource)
       end
 
       it "should not find resources not assigned to target_group" do
@@ -87,7 +86,7 @@ RSpec.describe Resource, type: :model do
 
       it "should be returned when passed a target_group it belongs to and one it does not" do
         target_group_ids = [target_groups.first.id, target_groups.last.id]
-        expect(Resource.target_groups(target_group_ids)).to eq([resource])
+        expect(Resource.target_groups(target_group_ids)).to include(resource)
       end
 
       it "should ignore the scope if passed nil" do
@@ -101,7 +100,7 @@ RSpec.describe Resource, type: :model do
 
       it "should find a resource assigned to a service" do
         first_service_id = services.first.id
-        expect(Resource.services(first_service_id)).to eq([resource])
+        expect(Resource.services(first_service_id)).to include(resource)
       end
 
       it "should not find resources not assigned to service" do
@@ -111,11 +110,11 @@ RSpec.describe Resource, type: :model do
 
       it "should be returned when passed a service it belongs to and one it does not" do
         service_ids = [services.first.id, services.last.id]
-        expect(Resource.services(service_ids)).to eq([resource])
+        expect(Resource.services(service_ids)).to include(resource)
       end
 
       it "should ignore the scope if passed nil" do
-        expect(Resource.services(nil)).to eq([resource])
+        expect(Resource.services(nil)).to include(resource)
       end
     end
 

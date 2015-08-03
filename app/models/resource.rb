@@ -12,9 +12,9 @@ class Resource < ActiveRecord::Base
 
   scope :name_search, ->(search){ where('name LIKE ?', "%#{search}%") if search }
   scope :keyword_search, ->(keywords){ search(keywords).select("pg_search_resources.rank, resources.*") if keywords.present? }
-  scope :categories, ->(category_ids) { joins(:categories).where(id: category_ids).merge(Category.displayed) if category_ids.present? }
-  scope :target_groups, ->(target_group_ids) { joins(:target_groups).where(id: target_group_ids).merge(TargetGroup.displayed) if target_group_ids.present? }
-  scope :services, ->(service_ids) { joins(:services).where(id: service_ids).merge(Service.displayed) if service_ids.present? }
+  scope :categories, ->(category_ids) { joins(:categories).where(categories: { id: category_ids }).merge(Category.displayed) if category_ids.present? }
+  scope :target_groups, ->(target_group_ids) { joins(:target_groups).where(target_groups: { id: target_group_ids }).merge(TargetGroup.displayed) if target_group_ids.present? }
+  scope :services, ->(service_ids) { joins(:services).where(services: { id: service_ids }).merge(Service.displayed) if service_ids.present? }
   scope :displayed, ->{ where(display: true) }
   scope :location_search, ->(postcode, radius) { near(postcode, radius) if postcode.present? }
 
