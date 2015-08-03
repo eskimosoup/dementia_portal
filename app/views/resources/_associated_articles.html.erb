@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h3>Related Articles</h3>
+    <ul>
+      <% presented_articles.each do |article_presenter| %>
+        <li>
+          <%= article_presenter.linked_title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -46,18 +46,44 @@ RSpec.describe Resource, type: :model do
     end
   end
 
-  describe "searching via scopes" do
+  describe "scopes" do
+    context "displayed scope" do
+      it "should not find a faq that is not displayed" do
+        resource = create(:resource, display: false)
+        expect(Resource.displayed).not_to include(resource)
+      end
+
+      it "should not find a faq that isdisplayed" do
+        resource = create(:resource)
+        expect(Resource.displayed).to include(resource)
+      end
+    end
+
+    context "id not scope" do
+      let!(:resources) { create_list(:resource, 2) }
+      let(:first_resource) { resources.first }
+
+      it "should not include the first resource when passed the first id" do
+        expect(Resource.id_not(first_resource)).not_to include(first_resource)
+      end
+
+      it "should include the second resource when passed the first resource" do
+        expect(Resource.id_not(resources.last)).to include(first_resource)
+      end
+    end
+
     context "category scope" do
       let!(:categories) { create_list(:category, 4) }
       subject(:resource) { create(:resource, categories: categories.take(2)) }
 
       it "should find a resource assigned to a category" do
+        first_category_id = categories.first.id
         expect(Resource.categories(first_category_id)).to include(resource)
       end
 
       it "should not find resources not assigned to category" do
         last_category_id = categories.last.id
-        expect(Resource.categories(last_category_id)).to eq([])
+        expect(Resource.categories(last_category_id)).not_to include(resource)
       end
 
       it "should be returned when passed a category it belongs to and one it does not" do
@@ -81,7 +107,7 @@ RSpec.describe Resource, type: :model do
 
       it "should not find resources not assigned to target_group" do
         last_target_group_id = target_groups.last.id
-        expect(Resource.target_groups(last_target_group_id)).to eq([])
+        expect(Resource.target_groups(last_target_group_id)).not_to include(resource)
       end
 
       it "should be returned when passed a target_group it belongs to and one it does not" do
@@ -90,7 +116,7 @@ RSpec.describe Resource, type: :model do
       end
 
       it "should ignore the scope if passed nil" do
-        expect(Resource.target_groups(nil)).to eq([resource])
+        expect(Resource.target_groups(nil)).to include(resource)
       end
     end
 
@@ -105,7 +131,7 @@ RSpec.describe Resource, type: :model do
 
       it "should not find resources not assigned to service" do
         last_service_id = services.last.id
-        expect(Resource.services(last_service_id)).to eq([])
+        expect(Resource.services(last_service_id)).not_to include(resource)
       end
 
       it "should be returned when passed a service it belongs to and one it does not" do

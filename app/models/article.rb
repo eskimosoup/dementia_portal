@@ -7,6 +7,10 @@ class Article < ActiveRecord::Base
   has_many :article_categories, dependent: :destroy
   has_many :categories, through: :article_categories
 
+  scope :categories, ->(category_ids) { joins(:categories).where(categories: { id: category_ids }) if category_ids.present? }
+  scope :displayed, ->{ where(display: true) }
+  scope :active, -> { where("date <= ?", Date.today).displayed }
+
   validates :title, presence: true
   validates :date, :content, presence: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }

@@ -46,7 +46,8 @@ module Optimadmin
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :summary, :description, :url, :youtube_embed_code, :organisation_id, :date, :time, :venue, :display)
+      params.require(:resource).permit(:name, :summary, :description, :url, :youtube_embed_code, :organisation_id, :date,
+                                       :time, :venue, :display, category_ids: [])
     end
   end
 end

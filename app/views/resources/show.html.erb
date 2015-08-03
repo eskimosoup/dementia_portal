@@ -5,20 +5,25 @@
     <%= @presented_resource.description %>
   </div>
   <div class="small-3 columns">
-    <div>
-      <h4><%= @presented_resource.organisation_name %> Resources</h4>
-    </div>
-
-    <div>
-      Related Resources Go Here
-    </div>
-
-    <div>
-      FAQs Go here
-    </div>
-
-    <div>
-      Related articles go here
-    </div>
+    <%= render partial: "associated_resources",
+               locals: { presented_resources: @presented_same_organisation_resources, title: "#{ @presented_resource.organisation_name } Resources" } %>
+    <%= render partial: "associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
   </div>
 </div>
+
+<%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
+<% unless @presented_frequently_asked_questions.blank? %>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>Related FAQs</h3>
+      <div id="faq-accordion">
+        <% @presented_frequently_asked_questions.each do |faq_presenter| %>
+          <h3><%= faq_presenter.question %></h3>
+          <div>
+            <%= faq_presenter.answer %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

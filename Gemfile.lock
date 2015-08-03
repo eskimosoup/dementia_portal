@@ -349,6 +349,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   optimadmin!
   optimadmin_generators!
   pg

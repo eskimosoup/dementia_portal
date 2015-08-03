@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_frequently_asked_question, only: [:show, :edit, :update, :destroy]
 
     def index
-      @frequently_asked_questions = Optimadmin::BaseCollectionPresenter.new(collection: FrequentlyAskedQuestion.where('question LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::FrequentlyAskedQuestionPresenter)
+      @frequently_asked_questions = Optimadmin::BaseCollectionPresenter.new(collection: FrequentlyAskedQuestion.where('question LIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::FrequentlyAskedQuestionPresenter)
     end
 
     def show
@@ -46,7 +46,7 @@ module Optimadmin
     end
 
     def frequently_asked_question_params
-      params.require(:frequently_asked_question).permit(:question, :answer, :display)
+      params.require(:frequently_asked_question).permit(:question, :answer, :display, category_ids: [])
     end
   end
 end

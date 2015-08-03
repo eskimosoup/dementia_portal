@@ -3,6 +3,10 @@ class ResourcePresenter < BasePresenter
 
   delegate :to_model, to: :resource
 
+  def id
+    resource.id
+  end
+
   def name
     resource.name
   end

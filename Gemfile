@@ -32,8 +32,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#  gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
-# gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
 gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
@@ -65,4 +63,5 @@ end
 group :test do
   gem 'database_cleaner', '~> 1.4.1'
   gem "capybara"
+  gem "launchy"
 end
