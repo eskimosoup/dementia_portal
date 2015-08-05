@@ -14,6 +14,7 @@
   <div class="small-3 columns">
     <%= render partial: "associated_resources",
                locals: { presented_resources: @presented_same_organisation_resources, title: "#{ @presented_resource.organisation_name } Resources" } %>
+               
     <%= render partial: "associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
 
     <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>

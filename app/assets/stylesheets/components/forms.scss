@@ -109,3 +109,16 @@ form.resources-search-form {
     width: 60%;
   }
 }
+
+.new_contact {
+  input[type='text'],
+  textarea {
+    @include border-radius(4px);
+    border: 1px solid $pastel-yellow;
+    padding: em(10px);
+
+    &:focus {
+      outline: 1px solid $pastel-orange;
+    }
+  }
+}

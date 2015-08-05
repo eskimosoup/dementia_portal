@@ -20,7 +20,7 @@ class ArticlePresenter < BasePresenter
   end
 
   def index_image
-    h.image_tag article.image.index, alt: article.title, class: 'page-image image-right' if article.image?
+    h.image_tag article.image.index, alt: article.title, class: 'page-image image-left' if article.image?
   end
 
   def show_image

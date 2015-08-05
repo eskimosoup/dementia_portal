@@ -9,8 +9,18 @@
 
 <section class="content">
   <div class="row">
-    <div class="small-12 large-8 columns">
+    <div class="small-12 medium-8 columns">
+      <h1>Contact form</h1>
+
+      <%= render 'shared/flash_messages', flash: flash %>
+
       <%= render 'form' %>
+    </div>
+
+    <div class="small-12 medium-4 columns">
+      <h2>Other contact methods</h2>
+      <strong>Telephone</strong>
+      <%= global_site_settings['Telephone'] %>
     </div>
   </div>
 </section>
