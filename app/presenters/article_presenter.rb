@@ -28,7 +28,7 @@ class ArticlePresenter < BasePresenter
   end
 
   def hero_image
-    if article.categories.first.image.present?
+    if article.categories.present? && article.categories.first.image.present?
        h.image_tag article.categories.first.image.show, alt: ''
     else
       h.image_tag 'layout/content/placeholder-bg.jpg', alt: ''
