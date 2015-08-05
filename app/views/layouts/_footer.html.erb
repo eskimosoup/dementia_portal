@@ -1,27 +1,29 @@
 
 <footer class="row" data-equalizer="footer">
   <div class="small-12 large-4 columns" data-equalizer-watch="footer">
-    <h2 class="twitter-title">
-      &ldquo;Tweet
+    <% if twitter_timeline_text.present? %>
+      <h2 class="twitter-title">
+        &ldquo;Tweet
 
-      <span>
-        tweet&rdquo;
-      </span>
-    </h2>
+        <span>
+          tweet&rdquo;
+        </span>
+      </h2>
 
-    <div class="row collapse">
-      <div class="medium-2 hide-for-small text-center columns">
-        <%= link_to global_site_settings['Twitter'] do %>
-          <%= image_tag 'components/icons/twitter-small.png', alt: '' %>
-        <% end %>
-      </div>
-
-        <div class="medium-10 small-12 columns">
-          <p class="tweet">
-            This is a BRILLIANT website if you are interested in training to be a home carer It's... http://t.co/yppvggsLU2
-          </p>
+      <div class="row collapse">
+        <div class="medium-2 hide-for-small text-center columns">
+          <%= link_to global_site_settings['Twitter'] do %>
+            <%= image_tag 'components/icons/twitter-small.png', alt: '' %>
+          <% end %>
         </div>
-    </div>
+
+          <div class="medium-10 small-12 columns">
+            <p class="tweet">
+              <%= raw twitter_timeline_text %>
+            </p>
+          </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="small-12 large-4 columns footer-articles text-center" data-equalizer-watch="footer">
@@ -30,14 +32,14 @@
 
       <div class="footer-article">
         <div class="title">
-          <%= link_to 'Training to be a home carer', '#' %>
+          <%= @presented_article.linked_title %>
         </div>
 
         <div class="summary">
-          <p>Tips and advice on how to care for patients in their home...</p>
+          <%= @presented_article.summary %>
         </div>
 
-        <%= link_to 'Full Article <span>></span>'.html_safe, '#', class: 'read-more' %>
+        <%= @presented_article.read_more('Full Article <span>></span>'.html_safe, class: 'read-more') %>
       </div>
     </div>
   </div>
@@ -50,7 +52,7 @@
   <div class="row">
     <div class="large-12 columns">
       <hr class="divider" />
-      
+
       <div class="footer-information">
         <span class="copyright">
           &copy; <%= global_site_settings['Name'] %> <%= Date.today.year %>

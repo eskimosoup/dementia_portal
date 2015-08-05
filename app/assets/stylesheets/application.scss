@@ -10,6 +10,7 @@
 'vendor/jquery-ui',
 'vendor/jquery-ui.structure',
 'vendor/jquery-ui.theme',
+'lib/mixins',
 'lib/variables',
 'optimadmin/global/additional_reset',
 'optimadmin/global/editor',
@@ -24,4 +25,5 @@
 'components/twitter',
 'components/articles',
 'components/resources',
-'components/forms';
+'components/forms',
+'components/flash_messages';

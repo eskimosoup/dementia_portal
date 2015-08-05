@@ -18,32 +18,7 @@
 </div>
 
 <div class="row audience-categorisation" data-equalizer="audience-categorisation">
-  <div class="large-4 small-12 first columns">
-    <div class="blue text-center">
-      <p data-equalizer-watch="audience-categorisation">I am worried about dementia</p>
-
-      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
-      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
-    </div>
-  </div>
-
-  <div class="large-4 small-12 middle columns">
-    <div class="yellow text-center">
-      <p data-equalizer-watch="audience-categorisation">I have been diagnosed with dementia</p>
-
-      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
-      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
-    </div>
-  </div>
-
-  <div class="large-4 small-12 last columns">
-    <div class="red text-center">
-      <p data-equalizer-watch="audience-categorisation">I am a carer or have a family member with dementia</p>
-
-      <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
-      <%= link_to 'Resources <span>></span>'.html_safe, '#', class: 'grey-button' %>
-    </div>
-  </div>
+  <%= render partial: 'target_groups/target_group', collection: @target_groups, as: :target_group %>
 </div>
 
 

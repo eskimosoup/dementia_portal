@@ -1,0 +1,8 @@
+<div class="large-4 small-12 <%= cycle('first', 'middle', 'last') %> columns">
+  <div class="<%= target_group.colour %> text-center">
+    <p data-equalizer-watch="audience-categorisation"><%= target_group.name %></p>
+
+    <%= link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button' %>
+    <%= link_to 'Resources <span>></span>'.html_safe, target_group, class: 'grey-button' %>
+  </div>
+</div>

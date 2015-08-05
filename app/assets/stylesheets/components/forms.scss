@@ -40,6 +40,10 @@ input[type='submit'] {
   color: $white;
   outline: 0;
   padding: em(8px) em(12px);
+
+  &:hover {
+    background: $light-grey;
+  }
 }
 
 // Resources form
@@ -47,5 +51,74 @@ form.resources-search-form {
   margin: 10px auto;
   .search-button-container {
     overflow: hidden;
+  }
+
+  legend {
+    color: $pastel-red;
+    font-size: em(12px);
+    padding: 0 em(10px);
+    text-transform: uppercase;
+  }
+
+  fieldset {
+    margin: 0 0 em(10px) 0;
+  }
+
+  fieldset,
+  input[type='text'],
+  select {
+    @include border-radius(4px);
+    border: 1px solid $pastel-yellow;
+    padding: em(6px);
+
+    .columns {
+      padding: 0;
+    }
+
+    &:focus {
+      outline: 1px solid $pastel-orange;
+    }
+  }
+
+  input[type='checkbox'] {
+    appearance: none;
+  }
+
+  input[type='submit'] {
+    width: 100%;
+  }
+
+  .field {
+    margin: 0;
+  }
+}
+
+.checkbox {
+  margin-top: em(5px);
+  margin-bottom: em(5px);
+
+  &.services {
+    float: left;
+  }
+
+  &.odd {
+    width: 40%;
+  }
+
+  &.even {
+    width: 60%;
+  }
+}
+
+.new_contact {
+  input[type='text'],
+  textarea {
+    @include border-radius(4px);
+    border: 1px solid $pastel-yellow;
+    padding: em(10px);
+
+    &:focus {
+      outline: 1px solid $pastel-orange;
+    }
   }
 }

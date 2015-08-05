@@ -1,11 +1,26 @@
+<%= content_for :hero_content do %>
+  <h1>Contact Us</h1>
+<% end %>
+<%= content_for :hero_image do %>
+  <%= image_tag 'layout/content/placeholder-bg.jpg', alt: '' %>
+<% end %>
+
+<%= render partial: 'shared/hero_banner', locals: { presented_item: @page } %>
+
 <section class="content">
   <div class="row">
-    <div class="small-12 large-8 columns">
-      <h1>
-        Contact Us
-      </h1>
+    <div class="small-12 medium-8 columns">
+      <h1>Contact form</h1>
+
+      <%= render 'shared/flash_messages', flash: flash %>
 
       <%= render 'form' %>
+    </div>
+
+    <div class="small-12 medium-4 columns">
+      <h2>Other contact methods</h2>
+      <strong>Telephone</strong>
+      <%= global_site_settings['Telephone'] %>
     </div>
   </div>
 </section>

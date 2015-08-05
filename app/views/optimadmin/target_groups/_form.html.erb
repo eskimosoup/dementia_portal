@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-  
+
 
   <div class="tabs prevent-flash">
     <ul class="tab-list">
@@ -30,13 +30,23 @@
         <%= f.label :name %><br>
         <%= f.text_field :name %>
       </div>
+
+      <div class="field">
+  <%= f.label :colour %><br>
+  <%= f.select :colour, TargetGroup::COLOURS %>
+</div>
           <% end %>
 
     <%= field_set_tag nil, id: 'tabs-2' do %>
-      
+
           <% end %>
 
     <%= field_set_tag nil, id: 'tabs-3' do %>
+    <div class="field">
+<%= f.label :suggested_url %><br>
+<%= f.text_field :suggested_url %>
+</div>
+
             <div class="field">
         <%= f.label :display %><br>
         <%= f.check_box :display %>

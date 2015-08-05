@@ -1,0 +1,69 @@
+
+<div class="row">
+  <div class="small-12 columns">
+    <%= form_for @resource_search, method: :get, url: resources_path, html: { class: 'resources-search-form' } do |f| %>
+      <div class="row">
+
+        <div class="field small-6 medium-4 columns">
+          <%= f.label :keywords %><br/>
+          <%= f.text_field :keywords, placeholder: 'Enter search terms', class: 'search-input' %>
+        </div>
+
+        <div class="small-6 medium-4 columns field">
+          <%= f.label :postcode %><br/>
+          <%= f.text_field :postcode %>
+        </div>
+        <div class="small-6 medium-4 columns field">
+          <%= f.label :radius %>
+          <%= f.select :radius, ResourceSearch::RADIUS_OPTIONS %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <%= field_set_tag "Categories" do %>
+            <div class="row field">
+              <%= f.collection_check_boxes(:category_ids, Category.displayed.order(title: :asc), :id, :title) do |b| %>
+                <div class="checkbox small-4 columns">
+                  <%= b.check_box(class: "category check-box") %>
+                  <%= b.label(class: "category label") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%= field_set_tag "Target groups" do %>
+            <div class="row field">
+              <%= f.collection_check_boxes(:target_group_ids, TargetGroup.displayed.order(name: :asc), :id, :name) do |b| %>
+                <div class="checkbox small-12 columns">
+                  <%= b.check_box(class: "target-group check-box") %>
+                  <%= b.label(class: "target-group label") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="small-12 medium-6 columns">
+          <%= field_set_tag "Type of service" do %>
+            <div class="field">
+              <%= f.collection_check_boxes(:service_ids, Service.displayed.order(name: :asc), :id, :name) do |b| %>
+                <div class="checkbox services <%= cycle('odd', 'even') %>">
+                  <%= b.check_box(class: "service check-box") %>
+                  <%= b.label(class: "service label") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="search-button-container">
+            <%= f.submit "Search", class: 'search-button right' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+    <% end %>
+
+  </div>
+</div>

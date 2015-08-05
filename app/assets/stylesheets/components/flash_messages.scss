@@ -1,0 +1,47 @@
+%flash-heading {
+  font-size: em(16px);
+  color: $white;
+}
+
+// Flash
+.flash-message {
+  @include border-radius(2px);
+  padding: em(8px);
+
+  h2 {
+    @extend %flash-heading;
+  }
+
+  ul {
+    font-weight: normal;
+  }
+
+  &.notice {
+    border-color: $pastel-blue;
+    background: $pastel-blue;
+    color: $white;
+  }
+
+  &.error {
+    font-weight: bold;
+  }
+
+  &.alert {
+    font-weight: bold;
+  }
+}
+
+.error_messages,
+#error_explanation {
+  background-color: $pastel-red;
+  border-color: $pastel-yellow;
+  color: $white;
+
+  h2 {
+    @extend %flash-heading;
+  }
+
+  ul {
+    font-weight: normal;
+  }
+}
