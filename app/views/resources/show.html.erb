@@ -1,6 +1,13 @@
+<%= content_for :hero_content do %>
+  <h1><%= @presented_resource.name %></h1>
+  <!-- <div class="categories"><%= @presented_resource.categories %></div> -->
+<% end %>
+
+<%= render partial: 'shared/hero_banner', locals: { presented_item: @presented_resource } %>
+
 <div class="row">
   <div class="small-9 columns">
-    <h1><%= @presented_resource.name %></h1>
+
 
     <%= @presented_resource.description %>
   </div>
@@ -8,10 +15,12 @@
     <%= render partial: "associated_resources",
                locals: { presented_resources: @presented_same_organisation_resources, title: "#{ @presented_resource.organisation_name } Resources" } %>
     <%= render partial: "associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
+
+    <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
   </div>
 </div>
 
-<%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
+
 <% unless @presented_frequently_asked_questions.blank? %>
   <div class="row">
     <div class="small-12 columns">

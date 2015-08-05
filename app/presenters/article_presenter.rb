@@ -26,4 +26,16 @@ class ArticlePresenter < BasePresenter
   def show_image
     h.image_tag article.image.show, alt: article.title, class: 'page-image image-right' if article.image?
   end
+
+  def hero_image
+    if article.categories.first.image.present?
+       h.image_tag article.categories.first.image.show, alt: ''
+    else
+      h.image_tag 'layout/content/placeholder-bg.jpg', alt: ''
+    end
+  end
+
+  def read_more(text, options = {})
+    h.link_to text, article, options
+  end
 end

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-12 columns">
+
+    <div class="hero-banner">
+      <div class="hero-title">
+        <%= yield :hero_content %>
+      </div>
+
+      <div class="hero-image">
+        <%= yield :hero_image %>
+        <%= presented_item.hero_image unless content_for?(:hero_image) %>
+      </div>
+    </div>
+  </div>
+</div>

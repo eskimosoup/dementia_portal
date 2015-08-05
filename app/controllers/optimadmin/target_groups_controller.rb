@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_target_group, only: [:show, :edit, :update, :destroy]
 
     def index
-      @target_groups = Optimadmin::BaseCollectionPresenter.new(collection: TargetGroup.where('title LIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::TargetGroupPresenter)
+      @target_groups = Optimadmin::BaseCollectionPresenter.new(collection: TargetGroup.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::TargetGroupPresenter)
     end
 
     def show
@@ -46,7 +46,7 @@ module Optimadmin
     end
 
     def target_group_params
-      params.require(:target_group).permit(:name, :display, category_ids: [])
+      params.require(:target_group).permit(:name, :display, :suggested_url, :colour, category_ids: [])
     end
   end
 end

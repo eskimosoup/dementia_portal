@@ -3,12 +3,18 @@ Rails.application.routes.draw do
   resources :pages, only: :show
   resources :articles, only: [:index, :show]
   resources :contacts, only: [:new, :create]
-  resources :resources, only: [:index, :show]
+  resources :resources, only: [:index, :show] do
+    collection do
+      resources :target_groups, only: :show, path: 'group'
+    end
+  end
 
   mount Optimadmin::Engine => "/admin"
   root to: "application#index"
 end
 Optimadmin::Engine.routes.draw do
+  get 'target_groups_controller/show'
+
   resources :pages, except: [:show] do
     collection do
       post 'order'
