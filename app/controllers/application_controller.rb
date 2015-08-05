@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :global_site_settings, :set_menus
 
+  include TwitterHelper
+
   def index
     @presented_categories = BaseCollectionPresenter.new(collection: Category.home_page, view_template: view_context, presenter: CategoryPresenter)
     @resource_search = ResourceSearch.new

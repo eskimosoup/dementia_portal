@@ -18,7 +18,7 @@
 
         <div class="medium-10 small-12 columns">
           <p class="tweet">
-            This is a BRILLIANT website if you are interested in training to be a home carer It's... http://t.co/yppvggsLU2
+            <%= raw twitter_timeline_text %>
           </p>
         </div>
     </div>
@@ -50,7 +50,7 @@
   <div class="row">
     <div class="large-12 columns">
       <hr class="divider" />
-      
+
       <div class="footer-information">
         <span class="copyright">
           &copy; <%= global_site_settings['Name'] %> <%= Date.today.year %>

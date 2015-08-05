@@ -18,4 +18,8 @@
   line-height: 1.25;
   margin: 0;
   padding-bottom: em(15px, 12px);
+
+  a {
+    text-decoration: underline;
+  }
 }
