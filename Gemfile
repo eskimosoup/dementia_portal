@@ -34,7 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
-gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
+#gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
+gem 'optimadmin', path: '../optimadmin'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.9'
 gem 'pg_search', '~> 1.0.4'
