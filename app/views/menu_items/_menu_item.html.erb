@@ -1,7 +1,8 @@
-<li class="<%= cycle 'orange', 'yellow', 'red' %>">
+<% colour = cycle 'orange', 'yellow', 'red' unless depth > 1  %>
+<li class="<%= colour %>">
   <%= menu_item_presenter.link_to_webpage %>
   <% if sub_menu_items.present? %>
-    <%= content_tag :ul, class: "depth-#{ depth }" do %>
+    <%= content_tag :ul, class: "dropdown depth-#{ depth } #{colour}" do %>
       <%= nested_menu_items(menu_items: sub_menu_items, depth: depth + 1) %>
     <% end %>
   <% end %>
