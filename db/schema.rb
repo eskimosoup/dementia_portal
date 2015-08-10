@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805123935) do
+ActiveRecord::Schema.define(version: 20150810081432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,15 @@ ActiveRecord::Schema.define(version: 20150805123935) do
   end
 
   add_index "resources", ["organisation_id"], name: "index_resources_on_organisation_id", using: :btree
+
+  create_table "seo_entries", force: :cascade do |t|
+    t.string   "nominal_url"
+    t.string   "title"
+    t.text     "meta_description"
+    t.boolean  "in_sitemap",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "services", force: :cascade do |t|
     t.string   "name",                      null: false

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'sitemap', to: 'application#sitemap'
+
+
   resources :frequently_asked_questions, only: :index, path: 'frequently-asked-questions'
   resources :pages, only: :show
   resources :articles, only: [:index, :show]
@@ -13,8 +17,17 @@ Rails.application.routes.draw do
   root to: "application#index"
 end
 Optimadmin::Engine.routes.draw do
-  get 'target_groups_controller/show'
 
+
+  resources :seo_entries, except: [:show] do
+    collection do
+      post 'order'
+      get 'rebuild_seo'
+    end
+    member do
+      get 'toggle'
+    end
+  end
   resources :pages, except: [:show] do
     collection do
       post 'order'
