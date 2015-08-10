@@ -31,4 +31,12 @@ $(document).ready(function () {
   $("#faq-accordion").accordion({
     collapsible: true
   });
+
+  $(".faq-accordion").accordion({
+    active: false,
+    autoHeight: false,
+    navigation: true,
+    collapsible: true,
+    create: function(event, ui) { $("#accordion").show(); }
+  });
 });

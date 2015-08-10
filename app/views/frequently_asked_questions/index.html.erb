@@ -1,0 +1,30 @@
+<%= content_for :hero_content do %>
+  <h1>Frequently Asked Questions</h1>
+<% end %>
+<%= content_for :hero_image do %>
+  <%= image_tag 'layout/content/placeholder-bg.jpg', alt: '' %>
+<% end %>
+
+<%= render partial: 'shared/hero_banner', locals: { presented_item: @page } %>
+
+<section class="content">
+  <div class="row">
+    <div class="small-12 columns">
+      <% @categories.each do |category| %>
+        <div class="content-title">
+          <h2><%= category.title %></h2>
+        </div>
+
+        <div class="faq-accordion">
+          <% BaseCollectionPresenter.new(collection: category.frequently_asked_questions.displayed, view_template: self, presenter: FrequentlyAskedQuestionPresenter).each do |faq| %>
+            <h3><%= faq.question %></h3>
+
+            <div>
+              <%= faq.answer %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
