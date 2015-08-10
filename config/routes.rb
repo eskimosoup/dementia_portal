@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
   get 'sitemap', to: 'application#sitemap'
-
 
   resources :frequently_asked_questions, only: :index, path: 'frequently-asked-questions'
   resources :pages, only: :show
@@ -18,6 +16,8 @@ Rails.application.routes.draw do
 end
 Optimadmin::Engine.routes.draw do
 
+
+  get 'frequently_asked_questions/index'
 
   resources :seo_entries, except: [:show] do
     collection do
