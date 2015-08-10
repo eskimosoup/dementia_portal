@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :pages, only: :show
   resources :articles, only: [:index, :show]
   resources :contacts, only: [:new, :create]
+  resources :categories, only: :show
   resources :resources, only: [:index, :show] do
     collection do
       resources :target_groups, only: :show, path: 'group'
@@ -15,10 +16,6 @@ Rails.application.routes.draw do
   root to: "application#index"
 end
 Optimadmin::Engine.routes.draw do
-
-
-  get 'frequently_asked_questions/index'
-
   resources :seo_entries, except: [:show] do
     collection do
       post 'order'

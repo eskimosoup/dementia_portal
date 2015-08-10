@@ -1,5 +1,5 @@
 <%= content_for :hero_content do %>
-  <h1><%= @target_group.present? ? @target_group.name : 'Resource Search' %></h1>
+  <h1><%= @resource_scope.present? ? ( @resource_scope.try(:name) || @resource_scope.try(:title) ) : 'Resource Search' %></h1>
 <% end %>
 <%= content_for :hero_image do %>
   <%= image_tag 'layout/content/placeholder-bg.jpg', alt: '' %>
@@ -7,7 +7,7 @@
 
 <%= render partial: 'shared/hero_banner', locals: { presented_item: @page } %>
 
-<%= render partial: 'resources/search_form' unless @target_group.present? %>
+<%= render partial: 'resources/search_form' unless @resource_scope.present? %>
 
 <div class="row">
   <div class="small-8 columns">

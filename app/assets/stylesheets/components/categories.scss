@@ -1,13 +1,18 @@
 .home-category {
   padding-bottom: 1.875em;
 
-  .title {
+  .title a {
     background-color: $pastel-orange;
     color: $white;
+    display: block;
     font-weight: $semibold;
     text-align: center;
     letter-spacing: 1px;
     padding: em(20px);
+
+    &:hover {
+      background-color: lighten($pastel-orange, 5%);
+    }
   }
 
   span {
