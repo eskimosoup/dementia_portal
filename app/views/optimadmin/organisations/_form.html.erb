@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-  
+
 
   <div class="tabs prevent-flash">
     <ul class="tab-list">
@@ -26,38 +26,44 @@
     </ul>
 
     <%= field_set_tag nil, id: 'tabs-1' do %>
-            <div class="field">
+      <div class="field">
         <%= f.label :name %><br>
         <%= f.text_field :name %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :address %><br>
         <%= f.text_area :address, class: 'tinymce' %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :postcode %><br>
         <%= f.text_field :postcode %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :organisation_type %><br>
-        <%= f.text_field :organisation_type %>
+        <%= f.select :organisation_type, Organisation::ORGANISATION_TYPES %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :phone %><br>
         <%= f.text_field :phone %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :email %><br>
         <%= f.text_field :email %>
       </div>
-            <div class="field">
+
+      <div class="field">
         <%= f.label :website %><br>
         <%= f.text_field :website %>
       </div>
-          <% end %>
+    <% end %>
 
     <%= field_set_tag nil, id: 'tabs-2' do %>
-      
+
           <% end %>
 
     <%= field_set_tag nil, id: 'tabs-3' do %>
