@@ -1,0 +1,14 @@
+<%= render 'optimadmin/shared/header/main_title', title: "Reorder Categories" %>
+
+<div class="main-content">
+  <%= render 'optimadmin/shared/module/form/back', path: categories_path, title: 'Manage Category', prefix: 'Back to' %>
+
+
+
+  <div class="navigation-sortable menu-items-list" data-sortable-path="<%= reorder_path(model: "Category") %>">
+    <ul>
+      <%= render partial: 'reorder_category', collection: @categories, as: :category_presenter %>
+    </ul>
+  </div>
+
+</div>

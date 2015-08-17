@@ -1,10 +1,10 @@
 module Optimadmin
   class CategoriesController < Optimadmin::ApplicationController
-    edit_images_for Category, [[:image, { homepage: ['fill', 300, 300] }]]
+    edit_images_for Category, [[:image, { homepage: ['fill', 224, 174], show: ['fill', 960, 128] }]]
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index
-      @categories = Optimadmin::BaseCollectionPresenter.new(collection: Category.where('title LIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::CategoryPresenter)
+      @categories = Optimadmin::BaseCollectionPresenter.new(collection: Category.where('title LIKE ?', "%#{params[:search]}%").order(position: :asc).page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::CategoryPresenter)
     end
 
     def show
@@ -37,6 +37,10 @@ module Optimadmin
     def destroy
       @category.destroy
       redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    end
+
+    def reorder
+      @categories = Optimadmin::BaseCollectionPresenter.new(collection: Category.order(position: :asc), view_template: view_context, presenter: Optimadmin::CategoryPresenter)
     end
 
   private

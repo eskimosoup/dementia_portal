@@ -7,6 +7,12 @@
     <%= render 'optimadmin/shared/module/index/pagination' %>
     <%= render 'optimadmin/shared/module/index/order', options: [['Username', 'username']] %>
     <%= render 'optimadmin/shared/module/index/recycle_bin', items: @categories.size, path: root_url %>
+    <div class="back">
+      <%= link_to reorder_categories_path do %>
+        <%= octicon('settings') %>
+        Reorder Categories
+      <% end %>
+    </div>
   </div>
 
   <div class="row collapse module-list-index header">
