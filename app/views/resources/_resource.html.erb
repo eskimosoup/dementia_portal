@@ -1,11 +1,14 @@
 <div class="row">
   <div class="small-12 columns">
-    <%= link_to resource_presenter, class: "#{cycle("orange", "yellow", "red", "blue")} resource" do %>
+    <%= link_to resource_presenter, class: "#{cycle("orange", "yellow", "red", "blue", name: "resource-color")} resource" do %>
       <%= resource_presenter.distance %>
       <h2>
         <%= resource_presenter.name %>
       </h2>
+      <%= resource_presenter.organisation_area %>
       <%= resource_presenter.summary %>
+
+      <%= resource_presenter.categories_list %>
     <% end %>
   </div>
 </div>

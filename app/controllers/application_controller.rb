@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   include TwitterHelper
 
   def index
-    @target_groups = TargetGroup.where(display: true)
+    @presented_target_groups = BaseCollectionPresenter.new(collection: TargetGroup.where(display: true), view_template: view_context, presenter: TargetGroupPresenter)
     @presented_categories = BaseCollectionPresenter.new(collection: Category.home_page.order(position: :asc), view_template: view_context, presenter: CategoryPresenter)
     @resource_search = ResourceSearch.new
   end

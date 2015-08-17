@@ -1,8 +1,8 @@
 <%= content_for :hero_content do %>
-  <h1><%= @presented_category.title %></h1>
+  <h1><%= @presented_target_group.name %></h1>
 <% end %>
 <%= content_for :hero_image do %>
-  <%= @presented_category.show_image %>
+  <%= @presented_target_group.background_image %>
 <% end %>
 
 <%= render partial: 'shared/hero_banner' %>

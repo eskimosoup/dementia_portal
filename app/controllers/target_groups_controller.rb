@@ -1,12 +1,16 @@
 class TargetGroupsController < ApplicationController
+
+  before_action :set_target_group
+
   def show
-    @resource_scope = TargetGroup.friendly.find(params[:id])
-    @resource_search = ResourceSearch.new({ target_group_ids: @resource_scope.id })
-    @presented_resources = BaseCollectionPresenter.new(collection: @resource_search.resources, view_template: view_context, presenter: ResourcePresenter)
-    @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.categories(@resource_search.category_ids_no_blanks)
-                                                  .id_not(@presented_resources.map(&:id)), view_template: view_context, presenter: ResourcePresenter)
-    @presented_articles = BaseCollectionPresenter.new(collection: Article.active.categories(@resource_search.category_ids_no_blanks).limit(3),
-                                                      view_template: view_context, presenter: ArticlePresenter)
-    render 'resources/index'
+    @presented_resources = BaseCollectionPresenter.new(collection: @presented_target_group.resources.displayed,
+                                                       view_template: view_context, presenter: ResourcePresenter)
+    @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.id_not(@presented_resources.map(&:id)),
+                                                               view_template: view_context, presenter: ResourcePresenter)
+    @presented_articles = BaseCollectionPresenter.new(collection: Article.active.limit(3), view_template: view_context, presenter: ArticlePresenter)
+  end
+
+  def set_target_group
+    @presented_target_group = TargetGroupPresenter.new(object: TargetGroup.friendly.find(params[:id]), view_template: view_context)
   end
 end

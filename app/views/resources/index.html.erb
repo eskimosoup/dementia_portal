@@ -1,16 +1,17 @@
 <%= content_for :hero_content do %>
-  <h1><%= @resource_scope.present? ? ( @resource_scope.try(:name) || @resource_scope.try(:title) ) : 'Resource Search' %></h1>
+  <h1>Resource Search</h1>
 <% end %>
 <%= content_for :hero_image do %>
   <%= image_tag 'layout/content/placeholder-bg.jpg', alt: '' %>
 <% end %>
 
-<%= render partial: 'shared/hero_banner', locals: { presented_item: @page } %>
-
-<%= render partial: 'resources/search_form' unless @resource_scope.present? %>
+<%= render partial: 'shared/hero_banner' %>
 
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-12 medium-4 columns">
+    <%= render partial: 'resources/search_form' %>
+  </div>
+  <div class="small-12 medium-8 columns">
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
     <% else %>
@@ -18,9 +19,5 @@
         No resources found
       </p>
     <% end %>
-  </div>
-  <div class="small-4 columns">
-    <%= render partial: "resources/associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
-    <%= render partial: "resources/associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
   </div>
 </div>

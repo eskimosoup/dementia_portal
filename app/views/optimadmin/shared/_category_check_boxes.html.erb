@@ -1,6 +1,6 @@
 <%= field_set_tag "Categories" do %>
   <%= f.collection_check_boxes :category_ids, Category.order(:title), :id, :title do |b| %>
-    <%= b.check_box(class: "service check-box") %>
-    <%= b.label(class: "service label") %><br/>
+    <%= b.check_box(class: "category check-box") %>
+    <%= b.label(class: "category label") %><br/>
   <% end %>
 <% end %>
