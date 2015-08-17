@@ -52,7 +52,7 @@
 
       <div class="field">
         <%= f.label :organisation_id %><br>
-        <%= f.text_field :organisation_id %>
+        <%= f.collection_select :organisation_id, Organisation.order(:name), :id, :name, include_blank: true %>
       </div>
 
       <div class="field">

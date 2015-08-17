@@ -1,0 +1,25 @@
+<li class="menu-item" id="item_<%= category_presenter.category.id %>">
+  <div class="module-list-index <%= cycle('odd', 'even') %>"  data-equalizer="module-list">
+    <div class="small-6 columns" data-equalizer-watch="module-list">
+      <span class="drag-helper"></span>
+      <%= category_presenter.title %>
+    </div>
+
+    <div class="small-3 columns" data-equalizer-watch="module-list">
+      <%#= category_presenter.menu_resource_type %>
+      <%#= category_presenter.menu_resource_name %>
+    </div>
+
+    <div class="small-1 text-center columns"  data-equalizer-watch="module-list">
+      <%= category_presenter.show_link %>
+    </div>
+
+    <div class="small-1 text-center columns"  data-equalizer-watch="module-list">
+      <%= category_presenter.edit_link %>
+    </div>
+
+    <div class="small-1 text-center columns" data-equalizer-watch="module-list">
+      <%= category_presenter.delete_link %>
+    </div>
+  </div>
+</li>

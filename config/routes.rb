@@ -91,6 +91,7 @@ Optimadmin::Engine.routes.draw do
   end
   resources :categories, except: [:show] do
     collection do
+      get 'reorder'
       post 'order'
     end
     member do
