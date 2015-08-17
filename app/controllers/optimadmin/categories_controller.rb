@@ -4,7 +4,7 @@ module Optimadmin
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index
-      @categories = Optimadmin::BaseCollectionPresenter.new(collection: Category.where('title LIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::CategoryPresenter)
+      @categories = Optimadmin::BaseCollectionPresenter.new(collection: Category.where('title LIKE ?', "%#{params[:search]}%").order(position: :asc).page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::CategoryPresenter)
     end
 
     def show

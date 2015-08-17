@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def index
     @target_groups = TargetGroup.where(display: true)
-    @presented_categories = BaseCollectionPresenter.new(collection: Category.home_page, view_template: view_context, presenter: CategoryPresenter)
+    @presented_categories = BaseCollectionPresenter.new(collection: Category.home_page.order(position: :asc), view_template: view_context, presenter: CategoryPresenter)
     @resource_search = ResourceSearch.new
   end
 
