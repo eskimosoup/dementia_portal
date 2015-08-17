@@ -18,6 +18,10 @@ class ResourcePresenter < BasePresenter
     end
   end
 
+  def postcode
+    resource.postcode
+  end
+
   def hero_image
     if resource.categories.first.image.present?
        h.image_tag resource.categories.first.image.show, alt: ''
@@ -35,14 +39,40 @@ class ResourcePresenter < BasePresenter
   end
 
   def summary
-    resource.summary
+    h.raw resource.summary
   end
 
   def description
     h.raw resource.description
   end
 
+  def organisation_area
+    return nil if organisation_name.nil?
+    h.content_tag :div, class: "organisation-location" do
+      h.concat(h.content_tag :span, organisation_name, class: "resource-organisation")
+      h.concat(h.content_tag :span, "(#{ postcode })", class: "resource-postcode")
+    end
+  end
+
   def organisation_name
     resource.organisation_name
+  end
+
+  def categories_list
+    return nil if resource_categories.nil?
+    h.content_tag :ul, class: "resource-categories" do
+      h.render partial: "categories/resource_category", collection: presented_resources, as: :category_presenter
+    end
+  end
+
+  private
+
+  def presented_resources
+    BaseCollectionPresenter.new(collection: resource_categories,
+                                view_template: view_template, presenter: CategoryPresenter)
+  end
+
+  def resource_categories
+    @resource_categories ||= resource.categories
   end
 end

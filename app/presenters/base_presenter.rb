@@ -1,6 +1,6 @@
 class BasePresenter
 
-  attr_reader :object
+  attr_reader :object, :view_template
   delegate :to_param, to: :object
 
   def initialize(object:, view_template:)

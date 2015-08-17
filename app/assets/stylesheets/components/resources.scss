@@ -25,4 +25,36 @@ a.resource {
     border-color: $dark-grey;
     color: $dark-grey;
   }
+
+  .organisation-location {
+    color: $pastel-blue;
+    .resource-organisation {
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-right: 4px;
+    }
+
+  }
+
+  ul.resource-categories {
+    list-style-type: none;
+    li.resource-category {
+      display: inline-block;
+      color: white;
+      padding: 3px;
+      border-radius: 2px;
+      &.yellow {
+        background-color: $pastel-yellow;
+      }
+      &.orange {
+        background-color: $pastel-orange;
+      }
+      &.red {
+        background-color: $pastel-red;
+      }
+      &.blue {
+        background-color: $pastel-blue;
+      }
+    }
+  }
 }

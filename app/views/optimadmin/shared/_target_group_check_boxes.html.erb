@@ -1,0 +1,6 @@
+<%= field_set_tag "Target Groups" do %>
+  <%= f.collection_check_boxes :target_group_ids, TargetGroup.order(:name), :id, :name do |b| %>
+    <%= b.check_box(class: "target-group check-box") %>
+    <%= b.label(class: "target-group label") %><br/>
+  <% end %>
+<% end %>
