@@ -2,6 +2,7 @@ class TargetGroup < ActiveRecord::Base
 
   has_many :resource_target_groups, dependent: :destroy
   has_many :resources, through: :resource_target_groups
+  belongs_to :page
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]

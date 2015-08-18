@@ -1,6 +1,7 @@
 class Page < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
+  has_many :target_groups, dependent: :nullify
 
   mount_uploader :image, PageUploader
 

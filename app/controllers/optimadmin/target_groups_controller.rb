@@ -46,7 +46,7 @@ module Optimadmin
     end
 
     def target_group_params
-      params.require(:target_group).permit(:name, :display, :suggested_url, :colour, category_ids: [])
+      params.require(:target_group).permit(:name, :display, :suggested_url, :colour, :page_id, category_ids: [])
     end
   end
 end

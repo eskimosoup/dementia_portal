@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810081432) do
+ActiveRecord::Schema.define(version: 20150818082524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -271,7 +271,10 @@ ActiveRecord::Schema.define(version: 20150810081432) do
     t.string   "slug"
     t.string   "suggested_url"
     t.string   "colour"
+    t.integer  "page_id"
   end
+
+  add_index "target_groups", ["page_id"], name: "index_target_groups_on_page_id", using: :btree
 
   add_foreign_key "article_categories", "articles"
   add_foreign_key "article_categories", "categories"
@@ -284,4 +287,5 @@ ActiveRecord::Schema.define(version: 20150810081432) do
   add_foreign_key "resource_target_groups", "resources"
   add_foreign_key "resource_target_groups", "target_groups"
   add_foreign_key "resources", "organisations"
+  add_foreign_key "target_groups", "pages"
 end
