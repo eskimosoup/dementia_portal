@@ -20,6 +20,11 @@ class TargetGroupPresenter < BasePresenter
   end
 
   def overview_link
-    h.link_to 'Overview <span>></span>'.html_safe, '#', class: 'white-button'
+    return nil if page.nil?
+    h.link_to 'Overview <span>></span>'.html_safe, page, class: 'white-button'
+  end
+
+  def page
+    @page ||= target_group.page
   end
 end

@@ -16,8 +16,7 @@
   <div class="tabs prevent-flash">
     <ul class="tab-list">
       <li><a href="#tabs-1">Content</a></li>
-      <li><a href="#tabs-2">Media</a></li>
-      <li><a href="#tabs-3">Settings</a></li>
+      <li><a href="#tabs-2">Settings</a></li>
       <li>
         <%= link_to '#', class: 'destroy-tabs right', data: { class: 'tabs' } do %>
           <%= octicon('chevron-down') %>
@@ -26,32 +25,32 @@
     </ul>
 
     <%= field_set_tag nil, id: 'tabs-1' do %>
-            <div class="field">
+      <div class="field">
         <%= f.label :name %><br>
         <%= f.text_field :name %>
       </div>
 
       <div class="field">
-  <%= f.label :colour %><br>
-  <%= f.select :colour, TargetGroup::COLOURS %>
-</div>
-          <% end %>
+        <%= f.label :colour %><br>
+        <%= f.select :colour, TargetGroup::COLOURS %>
+      </div>
+    <% end %>
 
     <%= field_set_tag nil, id: 'tabs-2' do %>
+      <div class="field">
+        <%= f.collection_select :page_id, Page.order(title: :asc), :id, :title %>
+      </div>
 
-          <% end %>
+      <div class="field">
+        <%= f.label :suggested_url %><br>
+        <%= f.text_field :suggested_url %>
+      </div>
 
-    <%= field_set_tag nil, id: 'tabs-3' do %>
-    <div class="field">
-<%= f.label :suggested_url %><br>
-<%= f.text_field :suggested_url %>
-</div>
-
-            <div class="field">
+      <div class="field">
         <%= f.label :display %><br>
         <%= f.check_box :display %>
       </div>
-          <% end %>
+    <% end %>
   </div>
 
   <div class="actions">
