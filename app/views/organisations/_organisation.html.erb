@@ -1,0 +1,16 @@
+<div class="organisation">
+  <h3 class="associated-title">
+    <%= presented_organisation.name %>
+  </h3>
+
+  <%= presented_organisation.email %>
+  <%= presented_organisation.phone %>
+  <%= presented_organisation.website %>
+
+  <% if presented_organisation.has_address? %>
+    <div class="location">
+      <%= presented_organisation.address %>
+      <%= presented_organisation.postcode %>
+    </div>
+  <% end %>
+</div>

@@ -11,6 +11,9 @@ class ResourcesController < ApplicationController
   def show
     resource = Resource.friendly.find(params[:id])
     @presented_resource = ResourcePresenter.new(object: resource, view_template: view_context)
+    if resource.organisation
+      @presented_organisation = OrganisationPresenter.new(object: resource.organisation, view_template: view_context)
+    end
     @presented_same_organisation_resources = BaseCollectionPresenter.new(collection: Resource.organisation(resource.organisation_id).id_not(resource.id),
                                                                          view_template: view_context, presenter: ResourcePresenter)
     resources_already_loaded = @presented_same_organisation_resources.map(&:id) << resource.id
