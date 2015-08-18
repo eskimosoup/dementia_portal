@@ -1,21 +1,61 @@
 <%= content_for :hero_content do %>
   <h1><%= @presented_resource.name %></h1>
-  <!-- <div class="categories"><%= @presented_resource.categories %></div> -->
+  <%= @presented_resource.organisation_header %>
 <% end %>
 
 <%= render partial: 'shared/hero_banner', locals: { presented_item: @presented_resource } %>
 
 <div class="row">
   <div class="small-9 columns">
-
-
     <%= @presented_resource.description %>
+
+    <%= @presented_resource.youtube %>
+
+    <%= @presented_resource.website %>
+
+    <% if @presented_resource.event? %>
+      <div class="event-details">
+        <h3 class="associated-title">
+          Event Details
+        </h3>
+        <%= @presented_resource.date %>
+        <%= @presented_resource.time %>
+        <%= @presented_resource.venue %>
+      </div>
+    <% end %>
+
+    <% if @presented_resource.has_address? %>
+      <div class="location-details">
+        <h3 class="associated-title">
+          Location
+        </h3>
+        <%= @presented_resource.address %><br/>
+        <%= @presented_resource.postcode %>
+      </div>
+    <% end %>
+
+    <% if @presented_resource.contact_numbers? %>
+      <div class="contact-details">
+        <h3 class="associated-title">
+          Contact Numbers
+        </h3>
+        <%= @presented_resource.main_phone %>
+        <%= @presented_resource.secondary_phone %>
+      </div>
+    <% end %>
+
+    <% unless @presented_resource.categories.blank? %>
+      <h3 class="associated-title">Categories</h3>
+      <%= @presented_resource.categories_list %>
+    <% end %>
   </div>
   <div class="small-3 columns">
+    <%= render partial: "organisations/organisation", locals: { presented_organisation: @presented_organisation } if @presented_organisation %>
     <%= render partial: "associated_resources",
-               locals: { presented_resources: @presented_same_organisation_resources, title: "#{ @presented_resource.organisation_name } Resources" } %>
-               
-    <%= render partial: "associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
+               locals: { presented_resources: @presented_same_organisation_resources, title: "Other Resources" } %>
+
+    <%= render partial: "associated_resources",
+               locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented_related_resources.present? %>
 
     <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
   </div>
@@ -25,7 +65,7 @@
 <% unless @presented_frequently_asked_questions.blank? %>
   <div class="row">
     <div class="small-12 columns">
-      <h3>Related FAQs</h3>
+      <h3 class="associated-title">Related FAQs</h3>
       <div id="faq-accordion">
         <% @presented_frequently_asked_questions.each do |faq_presenter| %>
           <h3><%= faq_presenter.question %></h3>

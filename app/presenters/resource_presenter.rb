@@ -55,7 +55,12 @@ class ResourcePresenter < BasePresenter
   end
 
   def organisation_name
-    resource.organisation_name
+    @organisation_name ||= resource.organisation_name
+  end
+
+  def organisation_header
+    return nil if organisation_name.nil?
+    h.content_tag :h2, "#{ organisation_name } Resources"
   end
 
   def categories_list
@@ -65,6 +70,66 @@ class ResourcePresenter < BasePresenter
     end
   end
 
+  def resource_categories
+    @resource_categories ||= resource.categories
+  end
+
+  def website
+    return nil if resource.url.blank?
+    h.content_tag :div, class: "website" do
+      h.concat(h.content_tag :h3, "Website", class: "associated-title")
+      h.concat(h.link_to resource.url)
+    end
+  end
+
+  def youtube
+    return nil if resource.youtube_embed_code.blank?
+    h.raw resource.youtube_embed_code
+  end
+
+  def date
+    return nil if resource.date.blank?
+    "Date: #{ resource.date }"
+  end
+
+  def time
+    return nil if resource.time.blank?
+    "Time: #{ resource.time }"
+  end
+
+  def venue
+    return nil if resource.venue.blank?
+    h.content_tag :div, resource.venue, class: "venue"
+  end
+
+  def event?
+    resource.date.present? || resource.time.present? || resource.venue.present?
+  end
+
+  def has_address?
+    resource.postcode.present? && resource.address.present?
+  end
+
+  def address
+    resource.address
+  end
+
+  def postcode
+    resource.postcode
+  end
+
+  def contact_numbers?
+    resource.main_phone.present? || resource.secondary_phone.present?
+  end
+
+  def main_phone
+    resource.main_phone
+  end
+
+  def secondary_phone
+    resource.secondary_phone
+  end
+
   private
 
   def presented_resources
@@ -72,7 +137,5 @@ class ResourcePresenter < BasePresenter
                                 view_template: view_template, presenter: CategoryPresenter)
   end
 
-  def resource_categories
-    @resource_categories ||= resource.categories
-  end
+
 end
