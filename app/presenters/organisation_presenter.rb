@@ -20,7 +20,7 @@ class OrganisationPresenter < BasePresenter
   end
 
   def address
-    @address ||= organisation.address
+    @address ||= h.raw organisation.address
   end
 
   def postcode
