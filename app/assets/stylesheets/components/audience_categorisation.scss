@@ -3,7 +3,7 @@
   border-radius: 11px;
   font-size: em(12px);
   font-weight: $semibold;
-  margin: em(25px, 12px) em(5px, 12px) em(5px, 12px);
+  margin: em(15px, 12px) em(5px, 12px) em(5px, 12px);
   padding: em(2px, 12px) em(14px, 12px);
 
   &:hover {
@@ -12,14 +12,18 @@
 }
 
 .audience-categorisation {
-  margin-bottom: em(35px);
+  margin: 0 auto em(35px);
+
+  .inner {
+    margin: 0 em(15px);
+  }
 
   .columns div {
-    padding: em(20px) em(40px);
+    padding: em(10px) em(5px);
   }
 
   .blue {
-    background: $pastel-blue image-url('components/sections/purple-to-yellow.png') top right no-repeat;
+    background: $pastel-blue;
   }
 
   .yellow {
@@ -27,7 +31,11 @@
   }
 
   .red {
-    background: $pastel-red image-url('components/sections/yellow-to-red.png') top left no-repeat;
+    background: $pastel-red;
+  }
+
+  .orange {
+    background: $pastel-orange;
   }
 
   .first {
@@ -44,7 +52,7 @@
 
   p {
     color: $white;
-    font-size: em(16px);
+    font-size: em(14px);
     font-weight: $semibold;
     letter-spacing: 1px;
     line-height: 1.1;

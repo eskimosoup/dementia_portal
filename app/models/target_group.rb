@@ -12,7 +12,7 @@ class TargetGroup < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }
 
-  COLOURS = ['red', 'yellow', 'blue']
+  COLOURS = ['red', 'yellow', 'blue', 'orange']
 
   def slug_candidates
     [

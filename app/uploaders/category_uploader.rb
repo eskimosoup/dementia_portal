@@ -1,7 +1,7 @@
 class CategoryUploader < Optimadmin::ImageUploader
 
   version :homepage do
-    process resize_to_fill: [224, 174]
+    process resize_to_fill: [224, 144]
   end
 
   version :show do
