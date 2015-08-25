@@ -9,9 +9,11 @@ class Category < ActiveRecord::Base
   has_many :resources, through: :resource_categories
   has_many :frequently_asked_question_categories, dependent: :destroy
   has_many :frequently_asked_questions, through: :frequently_asked_question_categories
+  has_many :sub_categories, dependent: :destroy
 
   scope :home_page, -> { where(display: true, display_on_home: true) }
   scope :displayed, -> { where(display: true) }
+  scope :has_subcategories, -> { where("sub_categories_count > ?", 0) }
 
   validates :title, presence: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }

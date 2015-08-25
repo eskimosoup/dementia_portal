@@ -64,14 +64,14 @@ class ResourcePresenter < BasePresenter
   end
 
   def categories_list
-    return nil if resource_categories.nil?
+    return nil if resource_sub_categories.nil?
     h.content_tag :ul, class: "resource-categories" do
       h.render partial: "categories/resource_category", collection: presented_resources, as: :category_presenter
     end
   end
 
-  def resource_categories
-    @resource_categories ||= resource.categories
+  def resource_sub_categories
+    @resource_sub_categories ||= resource.sub_categories
   end
 
   def website
@@ -133,8 +133,8 @@ class ResourcePresenter < BasePresenter
   private
 
   def presented_resources
-    BaseCollectionPresenter.new(collection: resource_categories,
-                                view_template: view_template, presenter: CategoryPresenter)
+    BaseCollectionPresenter.new(collection: resource_sub_categories,
+                                view_template: view_template, presenter: SubCategoryPresenter)
   end
 
 

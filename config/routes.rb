@@ -65,7 +65,7 @@ Optimadmin::Engine.routes.draw do
       get 'toggle'
     end
   end
-  resources :services, except: [:show] do
+  resources :sub_categories, except: [:show] do
     collection do
       post 'order'
     end

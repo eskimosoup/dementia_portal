@@ -40,3 +40,7 @@ $(document).ready(function () {
     create: function(event, ui) { $("#accordion").show(); }
   });
 });
+
+function selectAllSubCategories(category_id) {
+  $(".checkbox .category-" + category_id).prop("checked", true);
+}

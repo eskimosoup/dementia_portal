@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Searching for resources", type: :feature do
   let!(:categories) { create_list(:category, 4) }
   let!(:target_groups) { create_list(:target_group, 4) }
-  let!(:services) { create_list(:service, 4) }
+  let!(:sub_categories) { create_list(:service, 4) }
 
   scenario "visiting resources page" do
     visit resources_path

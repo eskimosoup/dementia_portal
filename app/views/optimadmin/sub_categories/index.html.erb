@@ -1,12 +1,12 @@
-<%= render 'optimadmin/shared/header/main_title', title: 'Manage Services' %>
+<%= render 'optimadmin/shared/header/main_title', title: 'Manage Sub Categories' %>
 
 <div class="main-content">
   <div class="row module-header collapse">
-    <%= render 'optimadmin/shared/module/index/new_item', title: 'Service', object: Service, path: new_service_path %>
+    <%= render 'optimadmin/shared/module/index/new_item', title: 'SubCategory', object: SubCategory, path: new_sub_category_path %>
     <%= render 'optimadmin/shared/search_form' %>
     <%= render 'optimadmin/shared/module/index/pagination' %>
     <%= render 'optimadmin/shared/module/index/order', options: [['Username', 'username']] %>
-    <%= render 'optimadmin/shared/module/index/recycle_bin', items: @services.size, path: root_url %>
+    <%= render 'optimadmin/shared/module/index/recycle_bin', items: @sub_categories.size, path: root_url %>
   </div>
 
   <div class="row collapse module-list-index header">
@@ -16,7 +16,7 @@
 
     <%= list_item 'large-5 small-4' do 'Title' end %>
 
-    <%= list_item 'large-2 hide-for-medium-down' do 'Image' end %>
+    <%= list_item 'large-2 hide-for-medium-down' do 'Category' end %>
 
     <%= list_item { 'Display' } %>
     <%= list_item { 'View' } %>
@@ -25,6 +25,6 @@
     <%= list_item 'large-1 hide-for-medium-down text-center last' do 'Delete' end %>
   </div>
 
-  <%= render partial: 'service', collection: @services, as: :service_presenter %>
-  <%= paginate @services %>
+  <%= render partial: 'sub_category', collection: @sub_categories, as: :sub_category_presenter %>
+  <%= paginate @sub_categories %>
 </div>

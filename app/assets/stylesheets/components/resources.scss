@@ -43,6 +43,7 @@ ul.resource-categories {
     display: inline-block;
     color: white;
     padding: 3px;
+    margin: 3px;
     border-radius: 2px;
     &.yellow {
       background-color: $pastel-yellow;
@@ -57,4 +58,14 @@ ul.resource-categories {
       background-color: $pastel-blue;
     }
   }
+}
+
+a.select-all-button {
+  background: $dark-grey;
+  border: 1px solid $dark-grey;
+  border-radius: 3px;
+  color: $white;
+  outline: 0;
+  padding: em(2px) em(3px);
+  float: right;
 }

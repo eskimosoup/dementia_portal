@@ -29,7 +29,6 @@
         <% end %>
         <%= module_link(model: Page, path: pages_path) %>
         <%= module_link(model: Article, path: articles_path) %>
-        <%= module_link(model: Service, path: services_path) %>
         <%= module_link(content: "SEO Entries", model: SeoEntry, path: seo_entries_path) %>
       </ul>
 
@@ -41,6 +40,7 @@
         <%= module_link(model: FrequentlyAskedQuestion, path: frequently_asked_questions_path, content: 'Frequently Asked Questions') %>
         <%= module_link(model: Resource, path: resources_path) %>
         <%= module_link(model: Category, path: categories_path) %>
+        <%= module_link(model: SubCategory, path: sub_categories_path) %>
         <%= module_link(model: Organisation, path: organisations_path) %>
         <%= module_link(content: "Target Groups", model: TargetGroup, path: target_groups_path) %>
       </ul>

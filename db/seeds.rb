@@ -11,7 +11,7 @@ end
 
 ["Day centre", "Care home", "Live in care", "Respite care", "Home care", "Carer information and support programme",
  "Personal assistant service", "Nursing care", "Information", "Support", "Palliative care"].each do |service_name|
-  Service.find_or_create_by(name: service_name)
+  SubCategory.find_or_create_by(name: service_name)
 end
 
 TargetGroup.find_or_create_by(name: "I am worried about dementia")
@@ -42,9 +42,9 @@ alzheimers = Organisation.find_by(name: "The Alzheimer's Society")
 has_dementia = TargetGroup.find_by(name: "I have been diagnosed with dementia")
 carer = TargetGroup.find_by(name: "I am a carer of have a family member with dementia")
 activity = Category.find_by(title: "Activity")
-support = Service.find_by(name: "Support")
-care_home = Service.find_by(name: "Care home")
-day_centre = Service.find_by(name: "Day centre")
+support = SubCategory.find_by(name: "Support")
+care_home = SubCategory.find_by(name: "Care home")
+day_centre = SubCategory.find_by(name: "Day centre")
 Resource.find_or_initialize_by(name: "Singing for the brain").tap do |resource|
   resource.summary = "Singing for the Brain provides a structured group session for people with dementia who can come along alone or with a carer"
   resource.description = <<-eos
