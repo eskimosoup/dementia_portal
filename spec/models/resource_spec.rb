@@ -11,12 +11,10 @@ RSpec.describe Resource, type: :model do
 
   describe "associations", :association do
     it { should belong_to(:organisation) }
-    it { should have_many(:resource_categories).dependent(:destroy) }
-    it { should have_many(:categories).through(:resource_categories) }
+    it { should have_many(:resource_sub_categories).dependent(:destroy) }
+    it { should have_many(:sub_categories).through(:resource_sub_categories) }
     it { should have_many(:resource_target_groups).dependent(:destroy) }
     it { should have_many(:target_groups).through(:resource_target_groups) }
-    it { should have_many(:resource_services).dependent(:destroy) }
-    it { should have_many(:sub_categories).through(:resource_services) }
   end
 
   describe "delegations", :delegation do
@@ -73,26 +71,26 @@ RSpec.describe Resource, type: :model do
     end
 
     context "category scope" do
-      let!(:categories) { create_list(:category, 4) }
-      subject(:resource) { create(:resource, categories: categories.take(2)) }
+      let!(:sub_categories) { create_list(:sub_category, 4) }
+      subject(:resource) { create(:resource, sub_categories: sub_categories.take(2)) }
 
       it "should find a resource assigned to a category" do
-        first_category_id = categories.first.id
-        expect(Resource.categories(first_category_id)).to include(resource)
+        first_category_id = sub_categories.first.id
+        expect(Resource.sub_categories(first_category_id)).to include(resource)
       end
 
       it "should not find resources not assigned to category" do
-        last_category_id = categories.last.id
-        expect(Resource.categories(last_category_id)).not_to include(resource)
+        last_category_id = sub_categories.last.id
+        expect(Resource.sub_categories(last_category_id)).not_to include(resource)
       end
 
       it "should be returned when passed a category it belongs to and one it does not" do
-        category_ids = [categories.first.id, categories.last.id]
-        expect(Resource.categories(category_ids)).to include(resource)
+        category_ids = [sub_categories.first.id, sub_categories.last.id]
+        expect(Resource.sub_categories(category_ids)).to include(resource)
       end
 
       it "should ignore the scope if passed nil" do
-        expect(Resource.categories(nil)).to include(resource)
+        expect(Resource.sub_categories(nil)).to include(resource)
       end
     end
 
@@ -117,30 +115,6 @@ RSpec.describe Resource, type: :model do
 
       it "should ignore the scope if passed nil" do
         expect(Resource.target_groups(nil)).to include(resource)
-      end
-    end
-
-    context "target group scope" do
-      let!(:sub_categories) { create_list(:service, 4) }
-      subject(:resource) { create(:resource, sub_categories: services.take(2)) }
-
-      it "should find a resource assigned to a service" do
-        first_service_id = services.first.id
-        expect(Resource.services(first_service_id)).to include(resource)
-      end
-
-      it "should not find resources not assigned to service" do
-        last_service_id = services.last.id
-        expect(Resource.services(last_service_id)).not_to include(resource)
-      end
-
-      it "should be returned when passed a service it belongs to and one it does not" do
-        service_ids = [services.first.id, services.last.id]
-        expect(Resource.services(service_ids)).to include(resource)
-      end
-
-      it "should ignore the scope if passed nil" do
-        expect(Resource.services(nil)).to include(resource)
       end
     end
 

@@ -8,8 +8,6 @@ RSpec.describe Category, type: :model do
   describe "associations", :association do
     it { should have_many(:article_categories).dependent(:destroy) }
     it { should have_many(:articles).through(:article_categories) }
-    it { should have_many(:resource_categories).dependent(:destroy) }
-    it { should have_many(:resources).through(:resource_categories) }
     it { should have_many(:frequently_asked_question_categories).dependent(:destroy) }
     it { should have_many(:frequently_asked_questions).through(:frequently_asked_question_categories) }
   end
