@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818082524) do
+ActiveRecord::Schema.define(version: 20150825081858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,15 +40,16 @@ ActiveRecord::Schema.define(version: 20150818082524) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "title",                          null: false
+    t.string   "title",                               null: false
     t.string   "slug"
     t.string   "suggested_url"
     t.string   "image"
-    t.boolean  "display",         default: true
-    t.boolean  "display_on_home", default: true
-    t.integer  "position",        default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "display",              default: true
+    t.boolean  "display_on_home",      default: true
+    t.integer  "position",             default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "sub_categories_count", default: 0
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
@@ -192,25 +193,15 @@ ActiveRecord::Schema.define(version: 20150818082524) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "resource_categories", force: :cascade do |t|
+  create_table "resource_sub_categories", force: :cascade do |t|
     t.integer  "resource_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "sub_category_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "resource_categories", ["category_id"], name: "index_resource_categories_on_category_id", using: :btree
-  add_index "resource_categories", ["resource_id"], name: "index_resource_categories_on_resource_id", using: :btree
-
-  create_table "resource_services", force: :cascade do |t|
-    t.integer  "resource_id"
-    t.integer  "service_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "resource_services", ["resource_id"], name: "index_resource_services_on_resource_id", using: :btree
-  add_index "resource_services", ["service_id"], name: "index_resource_services_on_service_id", using: :btree
+  add_index "resource_sub_categories", ["resource_id"], name: "index_resource_sub_categories_on_resource_id", using: :btree
+  add_index "resource_sub_categories", ["sub_category_id"], name: "index_resource_sub_categories_on_sub_category_id", using: :btree
 
   create_table "resource_target_groups", force: :cascade do |t|
     t.integer  "resource_id"
@@ -256,12 +247,15 @@ ActiveRecord::Schema.define(version: 20150818082524) do
     t.datetime "updated_at"
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.boolean  "display",    default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+  create_table "sub_categories", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.boolean  "display",     default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "category_id"
   end
+
+  add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
 
   create_table "target_groups", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -280,12 +274,11 @@ ActiveRecord::Schema.define(version: 20150818082524) do
   add_foreign_key "article_categories", "categories"
   add_foreign_key "frequently_asked_question_categories", "categories"
   add_foreign_key "frequently_asked_question_categories", "frequently_asked_questions"
-  add_foreign_key "resource_categories", "categories"
-  add_foreign_key "resource_categories", "resources"
-  add_foreign_key "resource_services", "resources"
-  add_foreign_key "resource_services", "services"
+  add_foreign_key "resource_sub_categories", "resources"
+  add_foreign_key "resource_sub_categories", "sub_categories"
   add_foreign_key "resource_target_groups", "resources"
   add_foreign_key "resource_target_groups", "target_groups"
   add_foreign_key "resources", "organisations"
+  add_foreign_key "sub_categories", "categories"
   add_foreign_key "target_groups", "pages"
 end

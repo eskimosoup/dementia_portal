@@ -16,7 +16,7 @@ RSpec.describe Resource, type: :model do
     it { should have_many(:resource_target_groups).dependent(:destroy) }
     it { should have_many(:target_groups).through(:resource_target_groups) }
     it { should have_many(:resource_services).dependent(:destroy) }
-    it { should have_many(:services).through(:resource_services) }
+    it { should have_many(:sub_categories).through(:resource_services) }
   end
 
   describe "delegations", :delegation do
@@ -121,8 +121,8 @@ RSpec.describe Resource, type: :model do
     end
 
     context "target group scope" do
-      let!(:services) { create_list(:service, 4) }
-      subject(:resource) { create(:resource, services: services.take(2)) }
+      let!(:sub_categories) { create_list(:service, 4) }
+      subject(:resource) { create(:resource, sub_categories: services.take(2)) }
 
       it "should find a resource assigned to a service" do
         first_service_id = services.first.id
