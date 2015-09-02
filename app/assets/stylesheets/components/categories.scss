@@ -10,6 +10,10 @@
     letter-spacing: 1px;
     padding: em(10px);
 
+    @media screen and (max-width: 767px) {
+      max-width: 224px;
+    }
+
     &:hover {
       background-color: lighten($pastel-orange, 5%);
     }
