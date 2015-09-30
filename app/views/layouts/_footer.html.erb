@@ -1,7 +1,6 @@
 
 <footer class="row" data-equalizer="footer">
   <div class="small-12 medium-4 columns" data-equalizer-watch="footer">
-    <% if twitter_timeline_text.present? %>
       <h2 class="twitter-title">
         &ldquo;Tweet
 
@@ -18,15 +17,9 @@
         </div>
 
           <div class="medium-10 small-12 columns">
-            <p class="tweet">
-              <%= raw twitter_timeline_text %>
-            </p>
+            <p class="tweet"><%= raw twitter_timeline_text(0, global_site_settings['Twitter']) %></p>
           </div>
       </div>
-    <% else %>
-      <!-- remove this later -->
-      <%= image_tag "twitter.jpg" %>
-    <% end %>
   </div>
 
   <div class="small-12 medium-4 columns footer-articles text-center" data-equalizer-watch="footer">
