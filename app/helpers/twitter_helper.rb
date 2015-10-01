@@ -18,7 +18,7 @@ module TwitterHelper
   end
 
   def twitter_timeline_text(i, twitter)
-    scan_for_links twitter_timeline(twitter)[i].text
+    scan_for_links twitter_timeline(twitter)[i].text if twitter_timeline(twitter)[i].present?
   end
 
   def twitter_timeline_ago(i, twitter)
