@@ -8,7 +8,16 @@
 <%= render partial: 'shared/hero_banner' %>
 
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-12 large-4 columns">
+    <%= render partial: 'resources/search_form' %>
+    <% if @presented__related_resources || @presented_articles %>
+      <hr />
+    <% end %>
+    <%= render partial: "resources/associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
+    <%= render partial: "resources/associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
+  </div>
+  <div class="small-12 large-8 columns">
+    <h2><%= @presented_category.title %></h2>
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
     <% else %>
@@ -16,9 +25,5 @@
         No resources found
       </p>
     <% end %>
-  </div>
-  <div class="small-4 columns">
-    <%= render partial: "resources/associated_resources", locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented__related_resources %>
-    <%= render partial: "resources/associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
   </div>
 </div>

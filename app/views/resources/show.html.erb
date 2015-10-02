@@ -11,6 +11,8 @@
   </div>
 
   <div class="small-12 large-8 columns">
+    <h2><%= @presented_resource.name %></h2>
+
     <%= @presented_resource.description %>
 
     <%= @presented_resource.youtube %>
@@ -66,7 +68,9 @@
                      locals: { presented_resources: @presented_same_organisation_resources, title: "Other Resources" } %>
         </div>
       <% end %>
+    </div>
 
+    <div class="row">
       <% if @presented_related_resources.present? %>
         <div class="medium-6 columns end">
           <%= render partial: "associated_resources",
@@ -81,25 +85,20 @@
       <% end %>
     </div>
 
-
-
-
+    <% unless @presented_frequently_asked_questions.blank? %>
+      <div class="row">
+        <div class="small-12 columns">
+          <h3 class="associated-title">Related FAQs</h3>
+          <div id="faq-accordion">
+            <% @presented_frequently_asked_questions.each do |faq_presenter| %>
+              <h3><%= faq_presenter.question %></h3>
+              <div>
+                <%= faq_presenter.answer %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
-
-
-<% unless @presented_frequently_asked_questions.blank? %>
-  <div class="row">
-    <div class="small-12 columns">
-      <h3 class="associated-title">Related FAQs</h3>
-      <div id="faq-accordion">
-        <% @presented_frequently_asked_questions.each do |faq_presenter| %>
-          <h3><%= faq_presenter.question %></h3>
-          <div>
-            <%= faq_presenter.answer %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>

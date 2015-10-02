@@ -19,7 +19,7 @@ a.article {
     border-color: $pastel-red;
   }
   &.blue {
-    border-color: $pastel-blue;
+    border-color: lighten($pastel-blue, 15%);
   }
   &:hover {
     border-color: $dark-grey;
