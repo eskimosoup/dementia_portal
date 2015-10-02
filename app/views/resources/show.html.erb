@@ -6,7 +6,11 @@
 <%= render partial: 'shared/hero_banner', locals: { presented_item: @presented_resource } %>
 
 <div class="row">
-  <div class="small-9 columns">
+  <div class="small-12 large-4 columns">
+    <%= render partial: 'resources/search_form' %>
+  </div>
+
+  <div class="small-12 large-8 columns">
     <%= @presented_resource.description %>
 
     <%= @presented_resource.youtube %>
@@ -48,16 +52,38 @@
       <h3 class="associated-title">Categories</h3>
       <%= @presented_resource.categories_list %>
     <% end %>
-  </div>
-  <div class="small-3 columns">
-    <%= render partial: "organisations/organisation", locals: { presented_organisation: @presented_organisation } if @presented_organisation %>
-    <%= render partial: "associated_resources",
-               locals: { presented_resources: @presented_same_organisation_resources, title: "Other Resources" } %>
 
-    <%= render partial: "associated_resources",
-               locals: { presented_resources: @presented_related_resources, title: "Related Resources" } if @presented_related_resources.present? %>
+    <div class="row">
+      <% if @presented_organisation.present? %>
+        <div class="medium-6 columns end">
+          <%= render partial: "organisations/organisation", locals: { presented_organisation: @presented_organisation } %>
+        </div>
+      <% end %>
 
-    <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles } if @presented_articles %>
+      <% if @presented_same_organisation_resources.present? %>
+        <div class="medium-6 columns end">
+          <%= render partial: "associated_resources",
+                     locals: { presented_resources: @presented_same_organisation_resources, title: "Other Resources" } %>
+        </div>
+      <% end %>
+
+      <% if @presented_related_resources.present? %>
+        <div class="medium-6 columns end">
+          <%= render partial: "associated_resources",
+                     locals: { presented_resources: @presented_related_resources, title: "Related Resources" } %>
+        </div>
+      <% end %>
+
+      <% if @presented_articles.present? %>
+        <div class="medium-6 columns end">
+          <%= render partial: "associated_articles", locals: { presented_articles: @presented_articles }  %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
   </div>
 </div>
 

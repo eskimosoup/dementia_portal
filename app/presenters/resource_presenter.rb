@@ -23,7 +23,7 @@ class ResourcePresenter < BasePresenter
   end
 
   def hero_image
-    if resource.categories.present && resource.categories.first.image.present?
+    if resource.categories.present? && resource.categories.first.image.present?
        h.image_tag resource.categories.first.image.show, alt: ''
     else
       h.image_tag 'layout/content/placeholder-bg.jpg', alt: ''
@@ -50,7 +50,7 @@ class ResourcePresenter < BasePresenter
     return nil if organisation_name.nil?
     h.content_tag :div, class: "organisation-location" do
       h.concat(h.content_tag :span, organisation_name, class: "resource-organisation")
-      h.concat(h.content_tag :span, "(#{ postcode })", class: "resource-postcode")
+      h.concat(h.content_tag :span, "(#{postcode})", class: "resource-postcode") if postcode.present?
     end
   end
 
@@ -78,7 +78,7 @@ class ResourcePresenter < BasePresenter
     return nil if resource.url.blank?
     h.content_tag :div, class: "website" do
       h.concat(h.content_tag :h3, "Website", class: "associated-title")
-      h.concat(h.link_to resource.url)
+      h.concat(h.link_to resource.url, resource.url)
     end
   end
 
@@ -99,7 +99,7 @@ class ResourcePresenter < BasePresenter
 
   def venue
     return nil if resource.venue.blank?
-    h.content_tag :div, resource.venue, class: "venue"
+    h.content_tag :div, resource.venue.html_safe, class: "venue"
   end
 
   def event?
