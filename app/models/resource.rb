@@ -21,7 +21,7 @@ class Resource < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
 
-  delegate :name, to: :organisation, prefix: true
+  delegate :name, to: :organisation, prefix: true, allow_nil: true
   geocoded_by :postcode
   after_validation :geocode, if: ->(obj){ obj.postcode.present? && obj.postcode_changed? }
 
