@@ -2,6 +2,7 @@ class Resource < ActiveRecord::Base
   belongs_to :organisation
   has_many :resource_sub_categories, dependent: :destroy
   has_many :sub_categories, through: :resource_sub_categories
+  has_many :categories, through: :sub_categories
   has_many :resource_target_groups, dependent: :destroy
   has_many :target_groups, through: :resource_target_groups
 
