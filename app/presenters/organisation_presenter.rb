@@ -16,7 +16,7 @@ class OrganisationPresenter < BasePresenter
 
   def website
     return nil unless organisation.website
-    h.link_to organisation.website
+    h.link_to organisation.website, organisation.website, target: '_blank'
   end
 
   def address

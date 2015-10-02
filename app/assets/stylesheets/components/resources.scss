@@ -69,3 +69,11 @@ a.select-all-button {
   padding: em(2px) em(3px);
   float: right;
 }
+
+.category-list {
+  @extend %clearfix;
+}
+
+.list-style-none {
+  list-style: none;
+}

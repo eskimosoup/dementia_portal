@@ -3,9 +3,11 @@
     <%= presented_organisation.name %>
   </h3>
 
-  <%= presented_organisation.email %>
-  <%= presented_organisation.phone %>
-  <%= presented_organisation.website %>
+  <ul class="list-style-none">
+    <li><%= presented_organisation.email %></li>
+    <li><%= presented_organisation.phone %></li>
+    <li><%= presented_organisation.website %></li>
+  </ul>
 
   <% if presented_organisation.has_address? %>
     <div class="location">
