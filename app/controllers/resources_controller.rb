@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   def index
+    #raise params.to_yaml
     @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
     @presented_resources = BaseCollectionPresenter.new(collection: @resource_search.resources, view_template: view_context, presenter: ResourcePresenter)
     @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@resource_search.sub_category_ids_no_blanks)
