@@ -2,9 +2,10 @@ class ResourcesController < ApplicationController
   before_action :resource_search
 
   def index
+    @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
     @presented_resources = BaseCollectionPresenter.new(collection: @resource_search.resources, view_template: view_context, presenter: ResourcePresenter)
     @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@resource_search.sub_category_ids_no_blanks)
-                                                  .id_not(@presented_resources.map(&:id)), view_template: view_context, presenter: ResourcePresenter)
+                                                  .id_not(@presented_resources.map(&:id)).limit(5), view_template: view_context, presenter: ResourcePresenter)
     @presented_articles = BaseCollectionPresenter.new(collection: Article.active.categories(@resource_search.category_ids).limit(3),
                                                       view_template: view_context, presenter: ArticlePresenter)
   end
@@ -15,11 +16,11 @@ class ResourcesController < ApplicationController
     if resource.organisation
       @presented_organisation = OrganisationPresenter.new(object: resource.organisation, view_template: view_context)
     end
-    @presented_same_organisation_resources = BaseCollectionPresenter.new(collection: Resource.organisation(resource.organisation_id).id_not(resource.id),
+    @presented_same_organisation_resources = BaseCollectionPresenter.new(collection: Resource.organisation(resource.organisation_id).id_not(resource.id).limit(5),
                                                                          view_template: view_context, presenter: ResourcePresenter)
     resources_already_loaded = @presented_same_organisation_resources.map(&:id) << resource.id
     @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(resource.sub_category_ids)
-                                  .id_not(resources_already_loaded), view_template: view_context, presenter: ResourcePresenter)
+                                  .id_not(resources_already_loaded).limit(5), view_template: view_context, presenter: ResourcePresenter)
     @presented_articles = BaseCollectionPresenter.new(collection: Article.active.categories(resource.category_ids).limit(3),
                                                       view_template: view_context, presenter: ArticlePresenter)
     @presented_frequently_asked_questions = BaseCollectionPresenter.new(collection: FrequentlyAskedQuestion.displayed.categories(resource.category_ids).limit(3),

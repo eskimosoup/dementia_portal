@@ -16,7 +16,6 @@ class ResourceSearch
   attribute :sub_category_ids, Array[Integer]
 
   def resources
-    # https://github.com/Casecommons/pg_search/issues/238 the select allows uniq to work
     Resource.displayed.sub_categories(sub_category_ids_no_blanks)
         .target_groups(target_group_ids_no_blanks).keyword_search(keywords).location_search(postcode, radius).uniq
   end

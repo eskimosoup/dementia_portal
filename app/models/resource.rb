@@ -10,7 +10,7 @@ class Resource < ActiveRecord::Base
   pg_search_scope :search, against: { name: "A", description: "B", summary: "C" }, using: { tsearch: { dictionary: "english" } }
 
   scope :name_search, ->(search){ where('name LIKE ?', "%#{search}%") if search }
-  scope :keyword_search, ->(keywords){ search(keywords).select("pg_search_resources.rank, resources.*") if keywords.present? }
+  scope :keyword_search, ->(keywords){ search(keywords).with_pg_search_rank if keywords.present? }
   scope :sub_categories, ->(sub_category_ids) { joins(:sub_categories).where(sub_categories: { id: sub_category_ids }).merge(SubCategory.displayed) if sub_category_ids.present? }
   scope :target_groups, ->(target_group_ids) { joins(:target_groups).where(target_groups: { id: target_group_ids }).merge(TargetGroup.displayed) if target_group_ids.present? }
   scope :displayed, ->{ where(display: true) }
