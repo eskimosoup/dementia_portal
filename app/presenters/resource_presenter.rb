@@ -78,7 +78,7 @@ class ResourcePresenter < BasePresenter
     return nil if resource.url.blank?
     h.content_tag :div, class: "website" do
       h.concat(h.content_tag :h3, "Website", class: "associated-title")
-      h.concat(h.link_to resource.url, resource.url)
+      h.concat(h.link_to resource.url, resource.url, target: '_blank')
     end
   end
 

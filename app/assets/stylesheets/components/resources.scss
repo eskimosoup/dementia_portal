@@ -77,3 +77,19 @@ a.select-all-button {
 .list-style-none {
   list-style: none;
 }
+
+.associated-title {
+  margin: em(12px) 0;
+}
+
+.location {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.venue {
+  p {
+    margin: 0;
+  }
+}

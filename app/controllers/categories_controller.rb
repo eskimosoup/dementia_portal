@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category
 
   def show
+    @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
     @presented_resources = BaseCollectionPresenter.new(collection: @presented_category.resources.displayed, view_template: view_context, presenter: ResourcePresenter)
     @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@presented_category.sub_category_ids)
                                                   .id_not(@presented_resources.map(&:id)), view_template: view_context, presenter: ResourcePresenter)
@@ -12,7 +13,8 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @presented_category = CategoryPresenter.new(object: Category.friendly.find(params[:id]), view_template: view_context)
+    @category = Category.friendly.find(params[:id])
+    @presented_category = CategoryPresenter.new(object: @category, view_template: view_context)
     if request.path != category_path(@presented_category)
       redirect_to @presented_category
     end
