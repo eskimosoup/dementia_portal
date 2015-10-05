@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
   def index
     @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
-    @resources = @resource_search.resources.order(:name).page(params[:page]).per(params[:per_page] || 15)
+    @resources = @resource_search.resources.order(:name).page(params[:page]).per(params[:per_page] || 10)
     @presented_resources = BaseCollectionPresenter.new(collection: @resources, view_template: view_context, presenter: ResourcePresenter)
     @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@resource_search.sub_category_ids_no_blanks)
                                                   .id_not(@presented_resources.map(&:id)).limit(5), view_template: view_context, presenter: ResourcePresenter)
