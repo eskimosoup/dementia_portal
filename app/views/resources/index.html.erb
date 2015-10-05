@@ -14,6 +14,7 @@
   <div class="small-12 large-8 columns">
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
+      <%= paginate @resources %>
     <% else %>
       <p>
         No resources found

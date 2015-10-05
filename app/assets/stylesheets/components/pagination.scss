@@ -1,0 +1,30 @@
+%pagination {
+  color: $white;
+  display: inline-block;
+  font-size: em(16px);
+  padding: em(4px, 16px) em(8px, 16px);
+}
+
+.pagination {
+  border-top: 1px solid $pastel-yellow;
+  border-bottom: 1px solid $pastel-yellow;
+  margin: em(10px) 0;
+
+  a {
+    @extend %pagination;
+    background: $pastel-orange;
+    font-weight: $semibold;
+
+    &:hover {
+      background: $pastel-yellow;
+      color: $dark-grey;
+    }
+  }
+
+  .current {
+    @extend %pagination;
+    background: $pastel-yellow;
+    color: $dark-grey;
+    font-weight: $bold;
+  }
+}
