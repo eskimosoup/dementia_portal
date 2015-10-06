@@ -8,3 +8,20 @@ body {
 p {
   margin: em(10px) 0;
 }
+
+a.button {
+  color: $white;
+  display: inline-block;
+  font-size: em(14px);
+  font-weight: $semibold;
+  letter-spacing: 1px;
+  padding: em(9px, 14px) em(7px, 14px);
+
+  &.dark-grey {
+    background: $dark-grey;
+  }
+
+  &:visited {
+    color: $white;
+  }
+}
