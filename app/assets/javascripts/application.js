@@ -44,3 +44,7 @@ $(document).ready(function () {
 function selectAllSubCategories(category_id) {
   $(".checkbox .category-" + category_id).prop("checked", true);
 }
+
+function selectNoSubCategories(category_id) {
+  $(".checkbox .category-" + category_id).prop("checked", false);
+}

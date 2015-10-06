@@ -60,18 +60,23 @@ ul.resource-categories {
   }
 }
 
-a.select-all-button {
-  background: $dark-grey;
+a.select-all-button, a.select-none-button {
   border: 1px solid $dark-grey;
+  font-size: 0.9em;
   border-radius: 3px;
-  color: $white;
+  color: $dark-grey;;
   outline: 0;
   padding: em(2px) em(3px);
+  margin: em(2px);
   float: right;
 }
 
 .category-list {
   @extend %clearfix;
+  h4 {
+    display: inline-block;
+    border-bottom: 1px dotted $dark-grey;
+  }
 }
 
 .list-style-none {
