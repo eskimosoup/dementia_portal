@@ -93,3 +93,13 @@ a.select-all-button, a.select-none-button {
     margin: 0;
   }
 }
+
+a.map-list-toggle {
+  text-align: center;
+  background-color: $pastel-blue;
+  display: inline-block;
+  color: $white;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 2px;
+}
