@@ -22,7 +22,7 @@ class ResourceSearch
   end
 
   def resources_count
-    resources.count
+    resources.size
   end
 
   def sub_category_ids_no_blanks
@@ -35,6 +35,10 @@ class ResourceSearch
 
   def target_group_ids_no_blanks
     target_group_ids.reject(&:blank?)
+  end
+
+  def postcode?
+    postcode.present?
   end
 
 end

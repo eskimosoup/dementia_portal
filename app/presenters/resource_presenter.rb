@@ -130,11 +130,31 @@ class ResourcePresenter < BasePresenter
     resource.secondary_phone
   end
 
+  def data_hash
+    {
+      position: {
+        lat: resource.latitude,
+        lng: resource.longitude,
+      },
+      name: name,
+      address: info_window_address,
+      url: link
+    }
+  end
+
   private
 
   def presented_resources
     BaseCollectionPresenter.new(collection: resource_sub_categories,
                                 view_template: view_template, presenter: SubCategoryPresenter)
+  end
+
+  def info_window_address
+    [address.split(", "), postcode].compact.join('<br/>')
+  end
+
+  def link
+    h.resource_path(resource)
   end
 
 

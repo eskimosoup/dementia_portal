@@ -1,6 +1,7 @@
 <div class="row">
   <div class="small-12 columns">
-    <%= link_to resource_path(resource_presenter, request.query_parameters), class: "blue resource" do %>
+    <%= link_to resource_path(resource_presenter, request.query_parameters), class: "blue resource",
+                data: resource_presenter.data_hash do %>
       <%= resource_presenter.distance %>
       <h2>
         <%= resource_presenter.name %>

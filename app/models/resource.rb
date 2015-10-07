@@ -21,8 +21,9 @@ class Resource < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
 
-  delegate :name, to: :organisation, prefix: true, allow_nil: true
+  delegate :name, :postcode, to: :organisation, prefix: true, allow_nil: true
   geocoded_by :postcode
+  before_validation :use_organisation_postcode, if: Proc.new{|a| a.postcode.blank? }
   after_validation :geocode, if: ->(obj){ obj.postcode.present? && obj.postcode_changed? }
 
   validates :name, presence: true
@@ -38,6 +39,12 @@ class Resource < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     suggested_url_changed? || name_changed?
+  end
+
+  private
+
+  def use_organisation_postcode
+    self.postcode = organisation_postcode if organisation_postcode.present?
   end
 
 end

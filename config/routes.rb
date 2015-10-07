@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :categories, only: :show
   resources :resources, only: [:index, :show] do
-    get :map
     collection do
+      get :map
       resources :target_groups, only: :show, path: 'group'
     end
   end
