@@ -150,7 +150,11 @@ class ResourcePresenter < BasePresenter
   end
 
   def info_window_address
-    [address.split(", "), postcode].compact.join('<br/>')
+    [info_address, postcode].compact.join('<br/>')
+  end
+
+  def info_address
+    address.split(", ") if address
   end
 
   def link

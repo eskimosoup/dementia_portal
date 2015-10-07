@@ -17,14 +17,8 @@
     </h2>
 
     <% if @resource_search.postcode? %>
-      <div class="row">
-        <div class="small-6 columns">
-          <%= link_to "List View", resources_path(request.query_parameters), class: "map-list-toggle", disabled: (request.path == resources_path) %>
-        </div>
-        <div class="small-6 columns">
-          <%= link_to "Map View", map_resources_path(request.query_parameters), class: "map-list-toggle", disabled: (request.path == map_resources_path) %>
-        </div>
-      </div>
+      <%= link_to "List View", resources_path(request.query_parameters), class: "map-list-toggle", disabled: (request.path == resources_path) %>
+      <%= link_to "Map View", map_resources_path(request.query_parameters), class: "map-list-toggle", disabled: (request.path == map_resources_path) %>
     <% end %>
 
     <% unless @presented_resources.blank? %>
