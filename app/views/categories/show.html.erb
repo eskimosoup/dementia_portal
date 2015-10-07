@@ -18,6 +18,7 @@
   </div>
   <div class="small-12 large-8 columns">
     <h2><%= @presented_category.title %></h2>
+
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
     <% else %>

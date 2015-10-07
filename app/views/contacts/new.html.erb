@@ -18,9 +18,11 @@
     </div>
 
     <div class="small-12 medium-4 columns">
-      <h2>Other contact methods</h2>
-      <strong>Telephone</strong>
-      <%= global_site_settings['Telephone'] %>
+      <% if global_site_settings['Telephone'] %>
+        <h2>Other contact methods</h2>
+        <strong>Telephone</strong>
+        <%= global_site_settings['Telephone'] %>
+      <% end %>
     </div>
   </div>
 </section>
