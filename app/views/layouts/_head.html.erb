@@ -4,10 +4,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title><%= "#{@title} - " if @title %><%= global_site_settings['Name'] %></title>
-  
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
+  <%= yield :head %>
   <script src="//use.typekit.net/qxw2mie.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
 </head>

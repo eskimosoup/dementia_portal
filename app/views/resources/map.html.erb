@@ -1,3 +1,10 @@
+<%= content_for :footer do %>
+  <%= javascript_include_tag "google_maps" %>
+  <%= stylesheet_link_tag "components/google_maps" %>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuhGPSraHnmWnPpeKKpGtBu-6jPNa0TLE&callback=initMap">
+  </script>
+<% end %>
 <%= content_for :hero_content do %>
   <h1>Resource Search</h1>
 <% end %>
@@ -27,6 +34,9 @@
       </div>
     <% end %>
 
+    <div id="map">
+
+    </div>
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
       <%= paginate @resources %>
