@@ -1,14 +1,11 @@
 class ResourcesController < ApplicationController
   before_action :resource_search
+  before_action :set_variables, only: [:index, :map]
 
   def index
-    @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
-    @resources = @resource_search.resources.order(:name).page(params[:page]).per(params[:per_page] || 10)
-    @presented_resources = BaseCollectionPresenter.new(collection: @resources, view_template: view_context, presenter: ResourcePresenter)
-    @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@resource_search.sub_category_ids_no_blanks)
-                                                  .id_not(@presented_resources.map(&:id)).limit(5), view_template: view_context, presenter: ResourcePresenter)
-    @presented_articles = BaseCollectionPresenter.new(collection: Article.active.categories(@resource_search.category_ids).limit(3),
-                                                      view_template: view_context, presenter: ArticlePresenter)
+  end
+
+  def map
   end
 
   def show
@@ -32,5 +29,15 @@ class ResourcesController < ApplicationController
 
     def resource_search
       @resource_search = ResourceSearch.new(params.fetch(:resource_search, {}).delete_if{|k,v| v.blank? })
+    end
+
+    def set_variables
+      @resources_count = @resource_search.resources_count
+      @resources = @resource_search.resources.page(params[:page]).per(params[:per_page] || 10)
+      @presented_resources = BaseCollectionPresenter.new(collection: @resources, view_template: view_context, presenter: ResourcePresenter)
+      @presented_related_resources = BaseCollectionPresenter.new(collection: Resource.displayed.sub_categories(@resource_search.sub_category_ids_no_blanks)
+                                                                                 .id_not(@presented_resources.map(&:id)).limit(5), view_template: view_context, presenter: ResourcePresenter)
+      @presented_articles = BaseCollectionPresenter.new(collection: Article.active.categories(@resource_search.category_ids).limit(3),
+                                                        view_template: view_context, presenter: ArticlePresenter)
     end
 end

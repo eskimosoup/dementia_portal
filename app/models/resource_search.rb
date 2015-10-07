@@ -16,8 +16,13 @@ class ResourceSearch
   attribute :sub_category_ids, Array[Integer]
 
   def resources
-    Resource.displayed.sub_categories(sub_category_ids_no_blanks)
-        .target_groups(target_group_ids_no_blanks).keyword_search(keywords).location_search(postcode, radius).uniq
+    @resources ||= Resource.displayed.sub_categories(sub_category_ids_no_blanks)
+        .target_groups(target_group_ids_no_blanks).keyword_search(keywords)
+        .location_search(postcode, radius).uniq.order(:name)
+  end
+
+  def resources_count
+    resources.count
   end
 
   def sub_category_ids_no_blanks

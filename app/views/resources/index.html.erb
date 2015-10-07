@@ -12,6 +12,10 @@
     <%= render partial: 'resources/search_form' %>
   </div>
   <div class="small-12 large-8 columns">
+    <h2>
+      <%= @resources_count %> Results
+    </h2>
+
     <% unless @presented_resources.blank? %>
       <%= render partial: 'resources/resource', collection: @presented_resources, as: :resource_presenter %>
       <%= paginate @resources %>
