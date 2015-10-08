@@ -26,4 +26,8 @@ class TargetGroup < ActiveRecord::Base
     suggested_url_changed? || name_changed?
   end
 
+  def update_active_resources_count
+    update_attribute(:active_resources_count, resources.merge(Resource.displayed).count)
+  end
+
 end
