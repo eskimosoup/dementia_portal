@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825081858) do
+ActiveRecord::Schema.define(version: 20151007160625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,24 +248,26 @@ ActiveRecord::Schema.define(version: 20150825081858) do
   end
 
   create_table "sub_categories", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.boolean  "display",     default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "name",                                  null: false
+    t.boolean  "display",                default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "category_id"
+    t.integer  "active_resources_count", default: 0
   end
 
   add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
 
   create_table "target_groups", force: :cascade do |t|
-    t.string   "name",                         null: false
-    t.boolean  "display",       default: true
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "name",                                  null: false
+    t.boolean  "display",                default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "slug"
     t.string   "suggested_url"
     t.string   "colour"
     t.integer  "page_id"
+    t.integer  "active_resources_count", default: 0
   end
 
   add_index "target_groups", ["page_id"], name: "index_target_groups_on_page_id", using: :btree

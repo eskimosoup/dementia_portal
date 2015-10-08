@@ -9,4 +9,8 @@ class SubCategory < ActiveRecord::Base
   delegate :title, to: :category, prefix: true, allow_nil: true
 
   validates :name, presence: true, uniqueness: true
+
+  def update_active_resources_count
+    update_attribute(:active_resources_count, resources.merge(Resource.displayed).count)
+  end
 end

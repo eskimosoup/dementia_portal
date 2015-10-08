@@ -19,6 +19,8 @@ module Optimadmin
     def create
       @resource = Resource.new(resource_params)
       if @resource.save
+        @resource.sub_categories.each(&:update_active_resources_count)
+        @resource.target_groups.each(&:update_active_resources_count)
         redirect_to resources_url, notice: 'Resource was successfully created.'
       else
         render :new
@@ -27,6 +29,8 @@ module Optimadmin
 
     def update
       if @resource.update(resource_params)
+        @resource.sub_categories.each(&:update_active_resources_count)
+        @resource.target_groups.each(&:update_active_resources_count)
         redirect_to resources_url, notice: 'Resource was successfully updated.'
       else
         render :edit
@@ -35,6 +39,8 @@ module Optimadmin
 
     def destroy
       @resource.destroy
+      @resource.sub_categories.each(&:update_active_resources_count)
+      @resource.target_groups.each(&:update_active_resources_count)
       redirect_to resources_url, notice: 'Resource was successfully destroyed.'
     end
 
