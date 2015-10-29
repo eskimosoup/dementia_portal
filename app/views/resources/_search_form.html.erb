@@ -20,9 +20,11 @@
   <%= field_set_tag "Categories" do %>
     <% Category.displayed.has_subcategories.each do |category| %>
       <div class="category-list">
-        <%= link_to "select all", "#", class: "select-all-button", onclick: "selectAllSubCategories(#{ category.id })" %>
-        <%= link_to "select none", "#", class: "select-none-button", onclick: "selectNoSubCategories(#{ category.id })" %>
-        <h4><%= category.title %></h4>
+        <div>
+          <h4><%= category.title %></h4>
+          <%= link_to "select all", "#", class: "select-all-button", onclick: "selectAllSubCategories(#{ category.id })" %>
+          <%= link_to "select none", "#", class: "select-none-button", onclick: "selectNoSubCategories(#{ category.id })" %>
+        </div>
         <div class="clear"></div>
 
         <div class="field">

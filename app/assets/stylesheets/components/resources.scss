@@ -61,14 +61,11 @@ ul.resource-categories {
 }
 
 a.select-all-button, a.select-none-button {
-  border: 1px solid $dark-grey;
   font-size: 0.9em;
-  border-radius: 3px;
-  color: $dark-grey;;
+  color: $light-grey;
   outline: 0;
-  padding: em(2px) em(3px);
+  padding: em(2px);
   margin: em(2px);
-  float: right;
 }
 
 .category-list {
