@@ -1,7 +1,7 @@
 module Optimadmin
   class ArticlesController < Optimadmin::ApplicationController
 
-    edit_images_for Category, [[:image, { index: ['fill', 300, 300], show: ['fill', 300, 300] }]]
+    edit_images_for Article, [[:image, { index: ['fill', 300, 300], show: ['fill', 300, 300] }]]
     before_action :set_article, only: [:show, :edit, :update, :destroy]
 
     def index
