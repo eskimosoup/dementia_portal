@@ -34,8 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git', group: :development
-#gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
-gem 'optimadmin', path: '../optimadmin'
+gem 'optimadmin', git: 'git@github.com:eskimosoup/Optimadmin.git'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder', '~> 1.2.9'
 gem 'pg_search', '~> 1.0.4'
@@ -45,14 +44,14 @@ gem 'twitter'
 group :development do
   gem "quiet_assets"
   gem 'guard-rspec', require: false
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
